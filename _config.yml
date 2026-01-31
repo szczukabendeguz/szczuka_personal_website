@@ -1,4 +1,16 @@
 # Jekyll Configuration for GitHub Pages
+title: "Bendegúz Szczuka | Portfolio"
+description: "Portfolio of Bendegúz Szczuka. Design. Code. Experience."
+url: "https://szczuka_personal_website.github.io" # Replace with your actual URL if custom domain
+# baseurl: "/repo-name" # Un-comment and start with / if project page
+
 sass:
   sass_dir: _sass
   style: compressed
+
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - assets/css/style-dev.scss
+  - README.md
