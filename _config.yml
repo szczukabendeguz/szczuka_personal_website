@@ -1,0 +1,4 @@
+# Jekyll Configuration for GitHub Pages
+sass:
+  sass_dir: _sass
+  style: compressed
