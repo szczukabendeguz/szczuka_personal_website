@@ -1,0 +1,5 @@
+node_modules/
+assets/css/style.css
+.sass-cache/
+.jekyll-cache/
+_site/

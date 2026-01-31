@@ -1,0 +1,7 @@
+// Local Development Style Entry Point
+// This file is identical to style.scss but without Jekyll Front Matter
+
+// Imports - pointing to _sass folder relative to this file
+@import "../../_sass/variables";
+@import "../../_sass/mixins";
+@import "../../_sass/base";

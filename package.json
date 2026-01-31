@@ -1,0 +1,22 @@
+{
+  "name": "szczuka_personal_website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass assets/css/style-dev.scss assets/css/style.css",
+    "watch:css": "sass --watch assets/css/style-dev.scss:assets/css/style.css",
+    "serve": "live-server",
+    "dev": "concurrently \"npm run watch:css\" \"npm run serve\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "sass": "^1.97.3"
+  }
+}

@@ -1,0 +1,657 @@
+// Reset & Base
+body {
+    background-color: $bg-color;
+    color: $text-main;
+    font-family: $font-body;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+// Typography Overrides
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-text {
+    font-family: $font-display;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $text-main;
+    letter-spacing: -0.02em;
+}
+
+// Text Gradient Utility
+.text-gradient {
+    @include text-gradient(linear-gradient(90deg, #ff00cc, #3333ff, #00ffff, #ff00cc));
+    background-size: 300% 300%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+    &:hover {
+        color: $neon-cyan;
+    }
+}
+
+.hover-white:hover {
+    color: #ffffff !important;
+}
+
+// Components
+.glow-orb {
+    @include glow-orb;
+
+    &.blue {
+        background: $grad-ocean;
+        animation-delay: -2s;
+    }
+
+    &.sunset {
+        background: $grad-sunset;
+        animation-delay: -5s;
+    }
+}
+
+.glass-pill {
+    @include glass-effect;
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+// ============================================
+// HERO SECTION WITH ABSTRACT SHAPES
+// ============================================
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    h1 {
+        font-size: clamp(3rem, 15vw, 12rem);
+        line-height: 0.85;
+        text-align: center;
+        z-index: 2;
+        margin: 0;
+
+        .text-mask {
+            display: block;
+            overflow: hidden;
+
+            &>span {
+                display: block;
+                transform: translateY(110%);
+                transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+                will-change: transform;
+            }
+        }
+    }
+
+    .reveal-simple {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+}
+
+// ============================================
+// ABSTRACT SHAPES CONTAINER
+// ============================================
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+// Shape Wrapper (handles entrance animation)
+.shape-wrapper {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); // Elastic bounce
+}
+
+// ============================================
+// 1. HOT PINK ORGANIC BLOB (DISTINCT EDGES + GLOW)
+// ============================================
+.shape-blob-pink {
+    top: -10%;
+    left: 50%;
+    transform-origin: center center;
+}
+
+.blob-pink {
+    position: relative;
+    width: 500px;
+    height: 350px;
+
+    // The actual blob with clear edges
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff0099 0%, #ff00dd 100%);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        animation: blob-morph 8s ease-in-out infinite;
+        z-index: 2;
+    }
+
+    // The blurry glow behind
+    &::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        background: linear-gradient(135deg, #ff0099 0%, #ff00dd 100%);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        filter: blur(60px);
+        opacity: 0.7;
+        animation: blob-morph 8s ease-in-out infinite;
+        z-index: 1;
+    }
+}
+
+@keyframes blob-morph {
+
+    0%,
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+}
+
+// ============================================
+// ADDITIONAL ABSTRACT BLOBS FOR OTHER SECTIONS
+// ============================================
+
+// Section Shapes Container
+.section-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+
+// 2. TRIANGLE SHAPE (Bottom Left)
+.shape-triangle {
+    position: absolute;
+    bottom: 10%;
+    left: 8%;
+    transform: rotate(-10deg);
+}
+
+.triangle-blue {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    filter: drop-shadow(0 0 50px rgba(0, 102, 204, 0.5));
+    animation: floating-triangle 7s ease-in-out infinite;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0066cc 0%, #001133 100%);
+        clip-path: path('M150 260 L60 260 Q30 260 40 230 L130 60 Q150 25 170 60 L260 230 Q270 260 240 260 Z');
+    }
+}
+
+// 3. CROSS SHAPE (Work Section - Bottom Right)
+.shape-cross {
+    position: absolute;
+    bottom: 15%;
+    right: 5%;
+    transform: rotate(20deg);
+}
+
+.cross-gradient {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    filter: drop-shadow(0 0 60px rgba(255, 69, 0, 0.4));
+    animation: floating-cross 8s ease-in-out infinite;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff4500 0%, #8e44ad 100%);
+        clip-path: path('M160,0 C200,0 200,120 320,160 C200,200 200,320 160,320 C120,320 120,200 0,160 C120,120 120,0 160,0 Z');
+    }
+}
+
+// Float Animations
+@keyframes floating-star {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+}
+
+@keyframes floating-triangle {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-10deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(-5deg);
+    }
+}
+
+@keyframes floating-cross {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(20deg) scale(1);
+    }
+
+    50% {
+        transform: translateY(-40px) rotate(25deg) scale(1.05);
+    }
+}
+
+// ============================================
+// 2. BLUE TOGGLE SWITCH (ROUGH TEXTURE + ROLLING PHYSICS)
+// ============================================
+.shape-toggle {
+    position: absolute;
+    bottom: 20%;
+    left: 5%;
+}
+
+.toggle-switch {
+    width: 140px;
+    height: 70px;
+    background: linear-gradient(180deg, #557799 0%, #334455 100%);
+    border-radius: 50px;
+    position: relative;
+    box-shadow:
+        inset 0 3px 15px rgba(0, 0, 0, 0.4),
+        inset 0 -2px 8px rgba(255, 255, 255, 0.05),
+        0 10px 40px rgba(51, 68, 85, 0.3);
+    transition: all 0.6s ease;
+    animation: switch-state 6s ease-in-out infinite;
+
+    // Add rough texture overlay
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50px;
+        background-image:
+            repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
+            repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px);
+        opacity: 0.6;
+    }
+
+    // Hover state - toggle to ON
+    &:hover {
+        background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.3),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.1),
+            0 10px 40px rgba(0, 102, 204, 0.5);
+        animation: none;
+
+        .toggle-ball {
+            transform: translateY(-50%) translateX(75px);
+            animation: none;
+        }
+    }
+}
+
+@keyframes switch-state {
+    0% {
+        background: linear-gradient(180deg, #557799 0%, #334455 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.4),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.05),
+            0 10px 40px rgba(51, 68, 85, 0.3);
+    }
+
+    40% {
+        background: linear-gradient(180deg, #557799 0%, #334455 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.4),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.05),
+            0 10px 40px rgba(51, 68, 85, 0.3);
+    }
+
+    45% {
+        background: linear-gradient(180deg, #4488AA 0%, #225588 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.35),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.075),
+            0 10px 40px rgba(77, 119, 153, 0.4);
+    }
+
+    50% {
+        background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.3),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.1),
+            0 10px 40px rgba(0, 102, 204, 0.5);
+    }
+
+    90% {
+        background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.3),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.1),
+            0 10px 40px rgba(0, 102, 204, 0.5);
+    }
+
+    95% {
+        background: linear-gradient(180deg, #4488AA 0%, #225588 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.35),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.075),
+            0 10px 40px rgba(77, 119, 153, 0.4);
+    }
+
+    100% {
+        background: linear-gradient(180deg, #557799 0%, #334455 100%);
+        box-shadow:
+            inset 0 3px 15px rgba(0, 0, 0, 0.4),
+            inset 0 -2px 8px rgba(255, 255, 255, 0.05),
+            0 10px 40px rgba(51, 68, 85, 0.3);
+    }
+}
+
+.toggle-ball {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #b8e0ff 40%, #1a8ccc 100%);
+    border-radius: 50%;
+    box-shadow:
+        inset -8px -8px 20px rgba(0, 0, 0, 0.2),
+        inset 3px 3px 10px rgba(255, 255, 255, 0.3),
+        5px 5px 25px rgba(0, 0, 0, 0.3);
+    animation: ball-roll 6s ease-in-out infinite;
+
+    // Rough texture on ball
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-image:
+            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+            repeating-radial-gradient(circle at 50% 50%, transparent 0px, rgba(0, 0, 0, 0.03) 1px, transparent 2px);
+        animation: ball-texture-rotate 6s ease-in-out infinite;
+    }
+}
+
+@keyframes ball-roll {
+    0% {
+        transform: translateY(-50%) translateX(0) rotate(0deg);
+    }
+
+    40% {
+        transform: translateY(-50%) translateX(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-50%) translateX(75px) rotate(360deg);
+    }
+
+    90% {
+        transform: translateY(-50%) translateX(75px) rotate(360deg);
+    }
+
+    100% {
+        transform: translateY(-50%) translateX(0) rotate(720deg);
+    }
+}
+
+@keyframes ball-texture-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    40% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-360deg);
+    }
+
+    90% {
+        transform: rotate(-360deg);
+    }
+
+    100% {
+        transform: rotate(-720deg);
+    }
+}
+
+// ============================================
+// 3. COLORFUL PINWHEEL (SHARP CORNERS + BOLD GRADIENTS + CENTER OFF-SCREEN)
+// ============================================
+.shape-pinwheel {
+    // Absolute position at body level - scrolls with page, not cut by sections
+    position: absolute;
+    bottom: -100px;
+    right: -500px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pinwheel {
+    position: relative;
+    width: 700px;
+    height: 700px;
+    animation: pinwheel-spin 30s linear infinite;
+}
+
+.pinwheel-blade {
+    position: absolute;
+    width: 120px;
+    height: 450px;
+    border-radius: 0; // Sharp corners
+    transform-origin: center bottom;
+    left: 50%;
+    bottom: 50%;
+    margin-left: -60px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%); // Trapezoid shape
+}
+
+.blade-1 {
+    background: linear-gradient(180deg, #ff1744 0%, #ff6b00 50%, #ffaa00 100%);
+    transform: rotate(0deg);
+}
+
+.blade-2 {
+    background: linear-gradient(180deg, #d50000 0%, #ff1744 50%, #ff5252 100%);
+    transform: rotate(72deg);
+}
+
+.blade-3 {
+    background: linear-gradient(180deg, #6200ea 0%, #aa00ff 50%, #d500f9 100%);
+    transform: rotate(144deg);
+}
+
+.blade-4 {
+    background: linear-gradient(180deg, #00b0ff 0%, #0091ea 50%, #006db3 100%);
+    transform: rotate(216deg);
+}
+
+.blade-5 {
+    background: linear-gradient(180deg, #1de9b6 0%, #00bfa5 50%, #00897b 100%);
+    transform: rotate(288deg);
+}
+
+@keyframes pinwheel-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ============================================
+// ANIMATION TRIGGERS (body.is-loaded)
+// ============================================
+body.is-loaded {
+
+    // Text Reveal
+    .hero-section h1 .text-mask>span {
+        transform: translateY(0);
+    }
+
+    .hero-section h1 .text-mask:nth-child(1)>span {
+        transition-delay: 0.1s;
+    }
+
+    .hero-section h1 .text-mask:nth-child(2)>span {
+        transition-delay: 0.2s;
+    }
+
+    // Shape Pop-in (Elastic Bounce)
+    .shape-wrapper {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .shape-blob-pink {
+        transition-delay: 0.3s;
+    }
+
+    .shape-toggle {
+        transition-delay: 0.4s;
+    }
+
+    .shape-pinwheel {
+        transition-delay: 0.5s;
+    }
+
+    // Simple Reveals
+    .reveal-simple {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.6s;
+    }
+}
+
+// ============================================
+// REMAINING STYLES
+// ============================================
+
+.section-padding {
+    padding-top: $spacer-xl;
+    padding-bottom: $spacer-xl;
+}
+
+.project-card {
+    @include glass-effect;
+    padding: 2rem;
+    border-radius: 20px;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:hover {
+        transform: translateY(-10px) scale(1.02);
+        border-color: rgba($neon-blue, 0.5);
+        box-shadow: 0 10px 40px rgba($neon-blue, 0.15);
+    }
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+}
+
+// --- Scroll Reveal Animation Classes ---
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+    &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+// Magnetic Button Base
+.magnetic-btn {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    will-change: transform;
+}

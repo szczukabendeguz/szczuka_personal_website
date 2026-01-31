@@ -1,0 +1,28 @@
+// _variables.scss
+
+// 1. Colors
+$bg-color: #050505; // Not pure black, but close
+$text-main: #FFFFFF;
+$text-muted: #AAAAAA;
+
+// Neon Accents
+$neon-pink: #FF00CC;
+$neon-blue: #3333FF;
+$neon-cyan: #00FFFF;
+$neon-orange: #FF5500;
+$neon-purple: #9900FF;
+
+// 2. Gradients
+$grad-sunset: linear-gradient(135deg, $neon-orange, $neon-pink);
+$grad-ocean: linear-gradient(135deg, $neon-blue, $neon-cyan);
+$grad-aurora: linear-gradient(45deg, $neon-purple, $neon-pink, $neon-orange);
+$grad-text-main: linear-gradient(90deg, #ffffff, #aaaaaa); // Subtle metal gradient for main text
+
+// 3. Fonts
+$font-display: 'Clash Display', sans-serif;
+$font-body: 'Epilogue', sans-serif;
+
+// 4. Spacing
+$spacer-xl: 8rem;
+$spacer-lg: 5rem;
+$spacer-md: 3rem;
