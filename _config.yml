@@ -1,8 +1,11 @@
 # Jekyll Configuration for GitHub Pages
 title: "Bendegúz Szczuka | Portfolio"
 description: "Portfolio of Bendegúz Szczuka. Design. Code. Experience."
-url: "https://szczuka_personal_website.github.io" # Replace with your actual URL if custom domain
-# baseurl: "/repo-name" # Un-comment and start with / if project page
+url: "https://szczuka.hu"
+baseurl: "" # Empty baseurl for custom domain root
+
+# Disable default theme to avoid interference
+theme: null
 
 sass:
   sass_dir: _sass
