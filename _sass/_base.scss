@@ -1,4 +1,5 @@
 // Reset & Base
+html,
 body {
     background-color: $bg-color;
     color: $text-main;
@@ -85,7 +86,7 @@ a {
     overflow: hidden;
 
     h1 {
-        font-size: clamp(3rem, 15vw, 12rem);
+        font-size: clamp(2rem, 12vw, 12rem);
         line-height: 0.85;
         text-align: center;
         z-index: 2;
@@ -155,7 +156,11 @@ a {
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #ff0099 0%, #ff00dd 100%);
+        background:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='10' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E"),
+            repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
+            repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px),
+            linear-gradient(135deg, #ff0099 0%, #ff00dd 100%);
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
         animation: blob-morph 8s ease-in-out infinite;
         z-index: 2;
@@ -228,7 +233,11 @@ a {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #0066cc 0%, #001133 100%);
+        background:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E"),
+            repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
+            repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px),
+            linear-gradient(135deg, #0066cc 0%, #001133 100%);
         clip-path: path('M150 260 L60 260 Q30 260 40 230 L130 60 Q150 25 170 60 L260 230 Q270 260 240 260 Z');
     }
 }
@@ -253,7 +262,11 @@ a {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #ff4500 0%, #8e44ad 100%);
+        background:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E"),
+            repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
+            repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px),
+            linear-gradient(135deg, #ff4500 0%, #8e44ad 100%);
         clip-path: path('M160,0 C200,0 200,120 320,160 C200,200 200,320 160,320 C120,320 120,200 0,160 C120,120 120,0 160,0 Z');
     }
 }
@@ -302,6 +315,7 @@ a {
     position: absolute;
     bottom: 20%;
     left: 5%;
+    pointer-events: auto; // crucial for interaction since parent has pointer-events: none
 }
 
 .toggle-switch {
@@ -327,23 +341,78 @@ a {
         height: 100%;
         border-radius: 50px;
         background-image:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E"),
             repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
             repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px);
         opacity: 0.6;
     }
 
-    // Hover state - toggle to ON
+    // Hover state - handled by .user-interactive and JS tracking
     &:hover {
-        background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
-        box-shadow:
-            inset 0 3px 15px rgba(0, 0, 0, 0.3),
-            inset 0 -2px 8px rgba(255, 255, 255, 0.1),
-            0 10px 40px rgba(0, 102, 204, 0.5);
-        animation: none;
+        transform: scale(1.05);
+        cursor: pointer;
+
+        &::after {
+            opacity: 1;
+        }
+    }
+
+    // Dynamic Glow Element
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50px;
+        background: radial-gradient(80px circle at var(--x, 50%) var(--y, 50%), var(--glow-color, rgba(255, 255, 255, 0.3)), transparent 100%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    // Manual Interaction Class (Added by JS)
+    &.user-interactive {
+        animation: none !important; // Stop the auto-demo animation
+
+        // Stop child animations too
+        .toggle-ball,
+        .toggle-ball::before {
+            animation: none !important;
+        }
+
+        // Add transitions for smooth manual interaction
+        transition: background 0.6s ease,
+        box-shadow 0.6s ease,
+        transform 0.6s ease;
 
         .toggle-ball {
-            transform: translateY(-50%) translateX(75px);
-            animation: none;
+            transition: transform 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95); // Matches ease-in-out feel
+        }
+
+        // Toggled ON state
+        &.toggled-on {
+            background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
+            box-shadow:
+                inset 0 3px 15px rgba(0, 0, 0, 0.3),
+                inset 0 -2px 8px rgba(255, 255, 255, 0.1),
+                0 10px 40px rgba(0, 102, 204, 0.5);
+
+            --glow-color: rgba(51, 153, 255, 0.6); // Blue glow
+
+            .toggle-ball {
+                transform: translateY(-50%) translateX(70px) rotate(360deg);
+            }
+        }
+
+        // Toggled OFF state (Default manual)
+        &:not(.toggled-on) {
+            background: linear-gradient(180deg, #557799 0%, #334455 100%);
+
+            --glow-color: rgba(255, 255, 255, 0.2); // White/Gray glow
+
         }
     }
 }
@@ -365,13 +434,7 @@ a {
             0 10px 40px rgba(51, 68, 85, 0.3);
     }
 
-    45% {
-        background: linear-gradient(180deg, #4488AA 0%, #225588 100%);
-        box-shadow:
-            inset 0 3px 15px rgba(0, 0, 0, 0.35),
-            inset 0 -2px 8px rgba(255, 255, 255, 0.075),
-            0 10px 40px rgba(77, 119, 153, 0.4);
-    }
+    // Removed 45% step to let browser interpolate gradient smoothly
 
     50% {
         background: linear-gradient(180deg, #3399ff 0%, #0066cc 100%);
@@ -389,13 +452,7 @@ a {
             0 10px 40px rgba(0, 102, 204, 0.5);
     }
 
-    95% {
-        background: linear-gradient(180deg, #4488AA 0%, #225588 100%);
-        box-shadow:
-            inset 0 3px 15px rgba(0, 0, 0, 0.35),
-            inset 0 -2px 8px rgba(255, 255, 255, 0.075),
-            0 10px 40px rgba(77, 119, 153, 0.4);
-    }
+    // Removed 95% to let browser interpolate smoothly
 
     100% {
         background: linear-gradient(180deg, #557799 0%, #334455 100%);
@@ -447,15 +504,15 @@ a {
     }
 
     50% {
-        transform: translateY(-50%) translateX(75px) rotate(360deg);
+        transform: translateY(-50%) translateX(70px) rotate(360deg);
     }
 
     90% {
-        transform: translateY(-50%) translateX(75px) rotate(360deg);
+        transform: translateY(-50%) translateX(70px) rotate(360deg);
     }
 
     100% {
-        transform: translateY(-50%) translateX(0) rotate(720deg);
+        transform: translateY(-50%) translateX(0) rotate(0deg);
     }
 }
 
@@ -477,7 +534,7 @@ a {
     }
 
     100% {
-        transform: rotate(-720deg);
+        transform: rotate(0deg);
     }
 }
 
@@ -491,6 +548,13 @@ a {
     right: -500px;
     z-index: 1;
     pointer-events: none;
+
+    @media (max-width: 768px) {
+        right: -250px;
+        bottom: -50px;
+        // Note: The scale transform is handled in the body.is-loaded block 
+        // to maintain the entrance animation logic
+    }
 }
 
 .pinwheel {
@@ -510,6 +574,21 @@ a {
     bottom: 50%;
     margin-left: -60px;
     clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%); // Trapezoid shape
+
+    // Texture Overlay for Blade
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.4;
+        pointer-events: none;
+        background:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E"),
+            repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.1) 2px, rgba(255, 255, 255, 0.1) 4px);
+    }
 }
 
 .blade-1 {
@@ -569,6 +648,12 @@ body.is-loaded {
     .shape-wrapper {
         opacity: 1;
         transform: scale(1);
+
+        &.shape-pinwheel {
+            @media (max-width: 768px) {
+                transform: scale(0.6);
+            }
+        }
     }
 
     .shape-blob-pink {

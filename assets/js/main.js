@@ -75,4 +75,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- 5. Toggle Switch Interaction ---
+    const toggleSwitch = document.querySelector('.toggle-switch');
+
+    if (toggleSwitch) {
+        let isHovering = false;
+        let isInteractive = false;
+
+        // 1. Detect Hover intent
+        toggleSwitch.addEventListener('mouseenter', () => {
+            isHovering = true;
+        });
+
+        // 2. Wait for animation cycle to finish (ball at start/left)
+        // 'animationiteration' fires when the loop repeats (at 0%)
+        toggleSwitch.addEventListener('animationiteration', () => {
+            if (isHovering && !isInteractive) {
+                toggleSwitch.classList.add('user-interactive');
+                isInteractive = true;
+            }
+        });
+
+        // Manual Toggle Logic
+        toggleSwitch.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Check if we need to initialize interaction first
+            if (!isInteractive) {
+                toggleSwitch.classList.add('user-interactive');
+                isInteractive = true;
+
+                // Force a repaint/frame wait to ensure 'animation: none' applies 
+                // BEFORE attempting to transition the ball
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        toggleSwitch.classList.toggle('toggled-on');
+                    });
+                });
+            } else {
+                // Already interactive, just toggle directly
+                toggleSwitch.classList.toggle('toggled-on');
+            }
+        });
+
+        // 3. Dynamic Glow Effect (Mouse Tracking)
+        toggleSwitch.addEventListener('mousemove', (e) => {
+            const rect = toggleSwitch.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            toggleSwitch.style.setProperty('--x', `${x}px`);
+            toggleSwitch.style.setProperty('--y', `${y}px`);
+        });
+
+        toggleSwitch.addEventListener('mouseleave', () => {
+            // Optional: reset or fade out logic is handled by CSS hover state
+        });
+    }
+
 });
