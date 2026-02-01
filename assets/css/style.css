@@ -52,12 +52,19 @@
     transform: translateY(0);
   }
 }
-html,
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body {
   background-color: #050505;
   color: #FFFFFF;
   font-family: "Epilogue", sans-serif;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  position: relative;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -148,8 +155,8 @@ a:hover {
   overflow: hidden;
 }
 .hero-section h1 {
-  font-size: clamp(2rem, 12vw, 12rem);
-  line-height: 0.85;
+  font-size: clamp(2rem, 10vw, 10rem);
+  line-height: 0.9;
   text-align: center;
   z-index: 2;
   margin: 0;
@@ -192,12 +199,15 @@ a:hover {
   top: -10%;
   left: 50%;
   transform-origin: center center;
+  translate: -50% 0;
 }
 
 .blob-pink {
   position: relative;
-  width: 500px;
-  height: 350px;
+  width: 90vw;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 500/350;
 }
 .blob-pink::before {
   content: "";
@@ -254,8 +264,10 @@ a:hover {
 
 .triangle-blue {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 60vw;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 1/1;
   filter: drop-shadow(0 0 50px rgba(0, 102, 204, 0.5));
   animation: floating-triangle 7s ease-in-out infinite;
 }
@@ -277,8 +289,10 @@ a:hover {
 
 .cross-gradient {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 65vw;
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 1/1;
   filter: drop-shadow(0 0 60px rgba(255, 69, 0, 0.4));
   animation: floating-cross 8s ease-in-out infinite;
 }
@@ -472,34 +486,41 @@ a:hover {
 }
 .shape-pinwheel {
   position: absolute;
-  bottom: -100px;
-  right: -500px;
+  top: 70vh;
+  bottom: auto;
+  right: calc(-45vw - 150px);
   z-index: 1;
   pointer-events: none;
 }
+@media (min-width: 778px) {
+  .shape-pinwheel {
+    right: -400px;
+  }
+}
 @media (max-width: 768px) {
   .shape-pinwheel {
-    right: -250px;
-    bottom: -50px;
+    top: 80vh;
   }
 }
 
 .pinwheel {
   position: relative;
-  width: 700px;
-  height: 700px;
+  width: 90vw;
+  max-width: 700px;
+  height: auto;
+  aspect-ratio: 1/1;
   animation: pinwheel-spin 30s linear infinite;
 }
 
 .pinwheel-blade {
   position: absolute;
-  width: 120px;
-  height: 450px;
+  width: 17%;
+  height: 64%;
   border-radius: 0;
   transform-origin: center bottom;
   left: 50%;
   bottom: 50%;
-  margin-left: -60px;
+  margin-left: -8.5%;
   clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
 }
 .pinwheel-blade::after {
@@ -562,7 +583,7 @@ body.is-loaded .shape-wrapper {
 }
 @media (max-width: 768px) {
   body.is-loaded .shape-wrapper.shape-pinwheel {
-    transform: scale(0.6);
+    transform: scale(1);
   }
 }
 body.is-loaded .shape-blob-pink {
