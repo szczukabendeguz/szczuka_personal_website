@@ -81,45 +81,144 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggleSwitch) {
         let isHovering = false;
         let isInteractive = false;
+        let autoLoop;
 
-        // 1. Detect Hover intent
+        // 1. Auto-Toggle Interval (Infinite Loop driven by JS)
+        // Uses the same CSS transitions as manual click for consistent physics
+        function startAutoLoop() {
+            autoLoop = setInterval(() => {
+                if (!isHovering && !isInteractive) {
+                    toggleSwitch.classList.toggle('toggled-on');
+                }
+            }, 2500); // 2.5s interval between toggles
+        }
+
+        startAutoLoop();
+
+        // 2. Detect Hover -> Stop Auto Loop
         toggleSwitch.addEventListener('mouseenter', () => {
             isHovering = true;
+            clearInterval(autoLoop); // Stop the auto-demo immediately
         });
 
-        // 2. Wait for animation cycle to finish (ball at start/left)
-        // 'animationiteration' fires when the loop repeats (at 0%)
-        toggleSwitch.addEventListener('animationiteration', () => {
-            if (isHovering && !isInteractive) {
-                toggleSwitch.classList.add('user-interactive');
-                isInteractive = true;
-            }
-        });
+        // 3. Manual Toggle Logic
+        // 3. Manual Toggle & Drag Logic
+        const toggleBall = toggleSwitch.querySelector('.toggle-ball');
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let initialTranslate = 0;
+        let hasMoved = false;
+        let preventNextClick = false;
+        const maxTranslate = 70; // 0 to 70px range
 
-        // Manual Toggle Logic
-        toggleSwitch.addEventListener('click', (e) => {
-            e.preventDefault();
+        function getClientX(e) {
+            return e.touches ? e.touches[0].clientX : e.clientX;
+        }
 
-            // Check if we need to initialize interaction first
+        function handleDragStart(e) {
+            // Allow left click or touch
+            if (e.type === 'mousedown' && e.button !== 0) return;
+
+            isDragging = true;
+            hasMoved = false;
+            startX = getClientX(e);
+
+            clearInterval(autoLoop); // Stop auto demo
+
             if (!isInteractive) {
                 toggleSwitch.classList.add('user-interactive');
                 isInteractive = true;
-
-                // Force a repaint/frame wait to ensure 'animation: none' applies 
-                // BEFORE attempting to transition the ball
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        toggleSwitch.classList.toggle('toggled-on');
-                    });
-                });
-            } else {
-                // Already interactive, just toggle directly
-                toggleSwitch.classList.toggle('toggled-on');
             }
+
+            // Determine initial visual position
+            const computedStyle = window.getComputedStyle(toggleBall);
+            const matrix = new WebKitCSSMatrix(computedStyle.transform);
+            initialTranslate = matrix.m41; // Get current visual X translation
+
+            // Disable transition for direct 1:1 movement
+            toggleBall.style.transition = 'none';
+        }
+
+        function handleDragMove(e) {
+            if (!isDragging) return;
+
+            const x = getClientX(e);
+            if (Math.abs(x - startX) > 5) hasMoved = true; // Threshold for "drag" vs "click"
+
+            if (e.type === 'touchmove') e.preventDefault(); // Prevent scroll
+
+            const deltaX = x - startX;
+            let newX = initialTranslate + deltaX;
+
+            // Clamp
+            if (newX < 0) newX = 0;
+            if (newX > maxTranslate) newX = maxTranslate;
+
+            currentX = newX;
+
+            // Apply specific transform to ball
+            const rotation = (newX / maxTranslate) * 360;
+            toggleBall.style.transform = `translateY(-50%) translateX(${newX}px) rotate(${rotation}deg)`;
+
+            // Update glow effect position
+            toggleSwitch.style.setProperty('--x', `${newX + 10}px`);
+        }
+
+        function handleDragEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+
+            // Re-enable transition for the snap animation
+            toggleBall.style.transition = '';
+
+            if (hasMoved) {
+                // It was a drag. Snap based on final position.
+                if (currentX > (maxTranslate / 2)) {
+                    toggleSwitch.classList.add('toggled-on');
+                } else {
+                    toggleSwitch.classList.remove('toggled-on');
+                }
+                preventNextClick = true;
+                setTimeout(() => preventNextClick = false, 100);
+            }
+
+            // Clear inline styles so CSS class takes priority
+            toggleBall.style.transform = '';
+        }
+
+        // Click Listener on entire switch
+        toggleSwitch.addEventListener('click', (e) => {
+            e.preventDefault();
+            clearInterval(autoLoop);
+
+            if (!isInteractive) {
+                toggleSwitch.classList.add('user-interactive');
+                isInteractive = true;
+            }
+
+            if (preventNextClick) {
+                preventNextClick = false;
+                return;
+            }
+
+            toggleSwitch.classList.toggle('toggled-on');
         });
 
-        // 3. Dynamic Glow Effect (Mouse Tracking)
+        // Attach listeners
+        toggleBall.addEventListener('mousedown', handleDragStart);
+        toggleBall.addEventListener('touchstart', handleDragStart, { passive: false });
+
+        window.addEventListener('mousemove', handleDragMove);
+        window.addEventListener('touchmove', handleDragMove, { passive: false });
+
+        window.addEventListener('mouseup', handleDragEnd);
+        window.addEventListener('touchend', handleDragEnd);
+
+        // 4. Dynamic Glow Effect (Mouse Tracking)
         toggleSwitch.addEventListener('mousemove', (e) => {
+            if (isDragging) return; // Prevent conflict with drag logic
+
             const rect = toggleSwitch.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
