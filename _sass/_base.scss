@@ -266,7 +266,8 @@ a {
             repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
             repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px),
             linear-gradient(135deg, #0066cc 0%, #001133 100%);
-        clip-path: path('M150 260 L60 260 Q30 260 40 230 L130 60 Q150 25 170 60 L260 230 Q270 260 240 260 Z');
+        clip-path: url(#triangle-clip);
+        -webkit-clip-path: url(#triangle-clip);
     }
 }
 
@@ -305,7 +306,8 @@ a {
             repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.03) 4px),
             repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px),
             linear-gradient(135deg, #ff4500 0%, #8e44ad 100%);
-        clip-path: path('M160,0 C200,0 200,120 320,160 C200,200 200,320 160,320 C120,320 120,200 0,160 C120,120 120,0 160,0 Z');
+        clip-path: url(#cross-clip);
+        -webkit-clip-path: url(#cross-clip);
     }
 }
 
@@ -763,4 +765,129 @@ body.is-loaded {
     display: inline-block;
     transition: transform 0.2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
     will-change: transform;
+}
+
+// ============================================
+// NAVIGATION & HAMBURGER ANIMATIONS
+// ============================================
+
+// Remove Default Bootstrap Border/Shadow
+.navbar-toggler {
+    padding: 0.25rem 0.5rem; // Adjust padding if needed
+
+    &:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
+    // Open State (X Animation)
+    &[aria-expanded="true"] {
+        .line1 {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .line2 {
+            opacity: 0;
+            transform: translateX(-10px); // Slide out slightly
+        }
+
+        .line3 {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+    }
+}
+
+// Hamburger Container
+.hamburger-lines {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // Lines Shared Styles
+    .line {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background: #ffffff;
+        border-radius: 4px;
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.4s ease; // Bouncy effect
+    }
+}
+
+// Line Specifics for Reference (managed by flex space-between)
+.line1 {
+    transform-origin: center;
+}
+
+.line2 {
+    transform-origin: center;
+}
+
+.line3 {
+    transform-origin: center;
+}
+
+
+// Mobile Menu Blur & Animation
+// Mobile Menu Blur & Animation
+@media (max-width: 991.98px) {
+
+    // Ensure the toggle button stays on top of the menu card
+    .navbar-toggler {
+        z-index: 1051; // Higher than the collapsed menu
+        position: relative;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        // Position at the very top right, relative to the navbar container
+        top: 0;
+        right: 0;
+        margin: 1rem; // Slight offset from sheer edge
+        width: auto;
+        min-width: 250px;
+
+        // Compact styling
+        background: rgba(5, 5, 5, 0.9); // Slightly darker for better contrast
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 4rem 2rem 2rem 2rem; // Large top padding to clear the "X" space
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+
+        // Animation Origin
+        transform-origin: top right;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); // Smooth "Out Expo" or similar feel
+
+        text-align: center;
+        z-index: 1050; // High z-index but below toggler
+
+        .navbar-nav {
+            align-items: center !important; // Center items horizontally
+            gap: 1rem;
+            width: 100%;
+        }
+
+        // Animation states
+        &.collapsing {
+            opacity: 0;
+            transform: scale(0.8) translateY(-20px);
+            height: auto !important;
+            display: block;
+            transition: all 0.3s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        &.collapse:not(.show) {
+            display: none;
+        }
+
+        &.show {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
 }

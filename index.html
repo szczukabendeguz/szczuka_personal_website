@@ -23,15 +23,33 @@
 </head>
 
 <body>
+    <!-- SVG Clip Paths for Responsive Shapes -->
+    <svg width="0" height="0" style="position: absolute; pointer-events: none;">
+        <defs>
+            <clipPath id="triangle-clip" clipPathUnits="objectBoundingBox">
+                <path d="M150 260 L60 260 Q30 260 40 230 L130 60 Q150 25 170 60 L260 230 Q270 260 240 260 Z"
+                    transform="scale(0.00333333)" />
+            </clipPath>
+            <clipPath id="cross-clip" clipPathUnits="objectBoundingBox">
+                <path
+                    d="M160,0 C200,0 200,120 320,160 C200,200 200,320 160,320 C120,320 120,200 0,160 C120,120 120,0 160,0 Z"
+                    transform="scale(0.003125)" />
+            </clipPath>
+        </defs>
+    </svg>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top py-4">
         <div class="container-fluid px-4 px-md-5">
             <a class="navbar-brand text-white fw-bold text-uppercase" href="#">Szczuka</a>
-            <button class="navbar-toggler border-0 filter-invert" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav gap-4 align-items-center">
