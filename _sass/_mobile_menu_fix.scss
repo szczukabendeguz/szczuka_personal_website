@@ -1,0 +1,67 @@
+@media (max-width: 991.98px) {
+
+    // 1. Define Animations
+    @keyframes menuPopIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    @keyframes menuPopOut {
+        0% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(0.9) translateY(-20px);
+        }
+    }
+
+    // 2. Main Overrides
+    .navbar-collapse {
+        // Visual Style
+        background: rgba(10, 10, 10, 0.6) !important; // Seethrough dark
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        // ESSENTIAL: Set a transition property so Bootstrap's JS waits for it to finish.
+        // We use a dummy property or transform to ensure the duration is read.
+        transition: transform 0.4s ease !important;
+
+        &.show {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        // 3. Animation Logic during State Change
+        &.collapsing {
+            // Override Bootstrap's slide-down height logic
+            height: auto !important;
+            display: block !important;
+            visibility: visible !important;
+
+            // Ensure the duration matches completely
+            transition: transform 0.4s ease !important;
+
+            &.menu-opening {
+                // Force the animation
+                animation: menuPopIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+            }
+
+            &.menu-closing {
+                // Force the animation
+                animation: menuPopOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+            }
+        }
+    }
+}

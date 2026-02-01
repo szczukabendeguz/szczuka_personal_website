@@ -683,7 +683,6 @@ body.is-loaded {
 // ============================================
 
 .section-padding {
-    padding-top: $spacer-xl;
     padding-bottom: $spacer-xl;
 }
 
@@ -861,7 +860,7 @@ body.is-loaded {
 
         // Animation Origin
         transform-origin: top right;
-        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); // Smooth "Out Expo" or similar feel
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); // Smooth "Out Expo" or similar feel
 
         text-align: center;
         z-index: 1050; // High z-index but below toggler
@@ -878,7 +877,7 @@ body.is-loaded {
             transform: scale(0.8) translateY(-20px);
             height: auto !important;
             display: block;
-            transition: all 0.3s cubic-bezier(0.5, 0, 0, 1);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
 
         &.collapse:not(.show) {
@@ -888,6 +887,62 @@ body.is-loaded {
         &.show {
             opacity: 1;
             transform: scale(1) translateY(0);
+        }
+    }
+}
+
+// ============================================
+// RESIZE ANIMATIONS (Triggered by JS)
+// ============================================
+
+@keyframes fadeInNav {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.menu-switching {
+
+    // Switching TO Desktop
+    @media (min-width: 992px) {
+        .navbar-nav {
+
+            // Animate the items
+            .nav-item {
+                opacity: 0; // Start hidden
+                animation: fadeInNav 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
+                // Staggered delay
+                &:nth-child(1) {
+                    animation-delay: 0.05s;
+                }
+
+                &:nth-child(2) {
+                    animation-delay: 0.1s;
+                }
+
+                &:nth-child(3) {
+                    animation-delay: 0.15s;
+                }
+
+                &:nth-child(4) {
+                    animation-delay: 0.2s;
+                }
+            }
+        }
+    }
+
+    // Switching TO Mobile
+    @media (max-width: 991.98px) {
+        .navbar-toggler {
+            opacity: 0;
+            animation: fadeInNav 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
     }
 }
