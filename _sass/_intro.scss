@@ -1,0 +1,102 @@
+// ============================================
+// INTRO OVERLAY & GLITCH EFFECT (Refined)
+// ============================================
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 10000; // High z-index to cover navbar
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+
+    &.fade-out {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+.glitch-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1.glitch {
+    color: white;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 800;
+    position: relative;
+    font-size: 100px;
+    padding: 30px;
+    margin: 0;
+    line-height: 1;
+
+    // Responsive scaling
+    @media (max-width: 768px) {
+        font-size: 50px;
+        padding: 15px;
+    }
+
+    &::before,
+    &::after {
+        padding: 30px;
+        color: white;
+        content: attr(data-text); // Dynamic text
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: black;
+        overflow: hidden;
+        top: 0;
+
+        @media (max-width: 768px) {
+            padding: 15px; // Match parent
+        }
+    }
+
+    &::before {
+        left: 3px;
+        text-shadow: -2px 0 red;
+        animation: glitch-animation-1 2s linear infinite alternate-reverse;
+    }
+
+    &::after {
+        left: -3px;
+        text-shadow: -2px 0 blue;
+        animation: glitch-animation-2 2s linear infinite alternate-reverse;
+    }
+
+    &.fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease-out;
+    }
+}
+
+// Glitch Keyframes with proper SCSS Loop
+@keyframes glitch-animation-1 {
+    $steps: 20;
+
+    @for $i from 0 through $steps {
+        #{percentage($i * (1 / $steps))} {
+            clip: rect(random(150) + px, 9999px, random(150) + px, 0);
+        }
+    }
+}
+
+@keyframes glitch-animation-2 {
+    $steps: 20;
+
+    @for $i from 0 through $steps {
+        #{percentage($i * (1 / $steps))} {
+            clip: rect(random(150) + px, 9999px, random(150) + px, 0);
+        }
+    }
+}

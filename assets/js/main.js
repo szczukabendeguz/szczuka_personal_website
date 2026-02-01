@@ -1,10 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. Initial Load Animation Trigger ---
-    // Add .is-loaded to body to trigger CSS transitions
-    window.addEventListener('load', () => {
-        document.body.classList.add('is-loaded');
-    });
+    // --- 0. Initial Load & Intro Animation ---
+    const introOverlay = document.getElementById('intro-overlay');
+    const introText = document.querySelector('.glitch');
+
+    if (introOverlay) {
+        // Disable scroll initially
+        document.body.style.overflow = 'hidden';
+
+        // 1. Fade out text first (1s)
+        setTimeout(() => {
+            if (introText) introText.classList.add('fade-out');
+        }, 1000);
+
+        // 2. Fade out overlay & enable scroll (1.5s)
+        setTimeout(() => {
+            introOverlay.classList.add('fade-out');
+            document.body.style.overflow = '';
+
+            // Trigger the rest of the site animations
+            document.body.classList.add('is-loaded');
+
+            // Remove from DOM after transition
+            setTimeout(() => {
+                introOverlay.remove();
+            }, 1000);
+        }, 1500);
+    } else {
+        // Fallback if no intro found
+        window.addEventListener('load', () => {
+            document.body.classList.add('is-loaded');
+        });
+    }
 
     // --- 1. Soft Scroll Reveal Engine ---
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
@@ -148,7 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (e.type === 'touchmove') e.preventDefault(); // Prevent scroll
 
-            const deltaX = x - startX;
+            const wrapper = toggleSwitch.closest('.shape-toggle');
+            const scale = wrapper ? (parseFloat(getComputedStyle(wrapper).getPropertyValue('--scale-factor')) || 1) : 1;
+
+            const deltaX = (x - startX) / scale;
             let newX = initialTranslate + deltaX;
 
             // Clamp
@@ -231,5 +261,60 @@ document.addEventListener('DOMContentLoaded', () => {
             // Optional: reset or fade out logic is handled by CSS hover state
         });
     }
+
+    // --- 6. Responsive Menu Handling (Smooth Transitions) ---
+    const navbarCollapse = document.getElementById('navbarNav');
+
+    // Custom Animation Classes for Mobile Menu
+    if (navbarCollapse) {
+        navbarCollapse.addEventListener('show.bs.collapse', () => {
+            navbarCollapse.classList.add('menu-opening');
+            navbarCollapse.classList.remove('menu-closing');
+        });
+
+        navbarCollapse.addEventListener('hide.bs.collapse', () => {
+            navbarCollapse.classList.add('menu-closing');
+            navbarCollapse.classList.remove('menu-opening');
+        });
+
+        navbarCollapse.addEventListener('hidden.bs.collapse', () => {
+            navbarCollapse.classList.remove('menu-closing');
+        });
+
+        navbarCollapse.addEventListener('shown.bs.collapse', () => {
+            navbarCollapse.classList.remove('menu-opening');
+        });
+    }
+    let isDesktop = window.innerWidth >= 992;
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+        const currentIsDesktop = window.innerWidth >= 992;
+
+        if (currentIsDesktop !== isDesktop) {
+            // State changed (Mobile <-> Desktop)
+            isDesktop = currentIsDesktop;
+
+            // 1. Close mobile menu if open (Clean State)
+            if (navbarCollapse.classList.contains('show')) {
+                // Use Bootstrap API if available, else manual class removal
+                if (typeof bootstrap !== 'undefined') {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, { toggle: false });
+                    bsCollapse.hide();
+                } else {
+                    navbarCollapse.classList.remove('show');
+                }
+            }
+
+            // 2. Trigger CSS Animations
+            document.body.classList.add('menu-switching');
+
+            // Remove class after animation finishes
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                document.body.classList.remove('menu-switching');
+            }, 500);
+        }
+    });
 
 });
