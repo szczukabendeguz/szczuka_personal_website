@@ -199,15 +199,21 @@ a:hover {
   top: -10%;
   left: 50%;
   transform-origin: center center;
-  translate: -50% 0;
+  transform: translateX(-50%);
 }
 
 .blob-pink {
   position: relative;
   width: 90vw;
   max-width: 500px;
-  height: auto;
-  aspect-ratio: 500/350;
+  height: 63vw;
+  max-height: 350px;
+}
+@supports (aspect-ratio: 1) {
+  .blob-pink {
+    height: auto;
+    aspect-ratio: 500/350;
+  }
 }
 .blob-pink::before {
   content: "";
@@ -266,8 +272,16 @@ a:hover {
   position: relative;
   width: 60vw;
   max-width: 300px;
-  height: auto;
-  aspect-ratio: 1/1;
+  height: 60vw;
+  max-height: 300px;
+}
+@supports (aspect-ratio: 1) {
+  .triangle-blue {
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+}
+.triangle-blue {
   filter: drop-shadow(0 0 50px rgba(0, 102, 204, 0.5));
   animation: floating-triangle 7s ease-in-out infinite;
 }
@@ -291,8 +305,16 @@ a:hover {
   position: relative;
   width: 65vw;
   max-width: 320px;
-  height: auto;
-  aspect-ratio: 1/1;
+  height: 65vw;
+  max-height: 320px;
+}
+@supports (aspect-ratio: 1) {
+  .cross-gradient {
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+}
+.cross-gradient {
   filter: drop-shadow(0 0 60px rgba(255, 69, 0, 0.4));
   animation: floating-cross 8s ease-in-out infinite;
 }
@@ -507,8 +529,16 @@ a:hover {
   position: relative;
   width: 90vw;
   max-width: 700px;
-  height: auto;
-  aspect-ratio: 1/1;
+  height: 90vw;
+  max-height: 700px;
+}
+@supports (aspect-ratio: 1) {
+  .pinwheel {
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+}
+.pinwheel {
   animation: pinwheel-spin 30s linear infinite;
 }
 
