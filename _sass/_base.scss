@@ -86,7 +86,7 @@ a {
 // ============================================
 .hero-section {
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -743,11 +743,17 @@ body.is-loaded {
     height: 100%;
     transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1.000);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    // Ensure backdrop blur is always applied, even during reveal animation
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
 
     &:hover {
         transform: translateY(-10px) scale(1.02);
         border-color: rgba($neon-blue, 0.5);
         box-shadow: 0 10px 40px rgba($neon-blue, 0.15);
+        // Reset transition to ensure snappy hover even with reveal classes present
+        transition-duration: 0.4s;
+        transition-delay: 0s;
     }
 
     h3 {
