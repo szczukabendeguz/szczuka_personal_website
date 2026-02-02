@@ -8,24 +8,39 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable scroll initially
         document.body.style.overflow = 'hidden';
 
-        // 1. Fade out text first (1s)
-        setTimeout(() => {
-            if (introText) introText.classList.add('fade-out');
-        }, 1000);
+        if (introText) {
+            // Ensure data-text is set for the CSS pseudo-elements
+            const textContent = introText.innerText || introText.dataset.text || "Hello World";
+            introText.setAttribute('data-text', textContent);
 
-        // 2. Fade out overlay & enable scroll (1.5s)
+            // Compressed Sequence (Total: 3s)
+            // Phase 1: Original Glitch (0-1700ms)
+            // Phase 2: Vanish/Collapse (1700-2000ms, 300ms duration)
+            // Phase 3: Dark Pause (2000-2500ms, 500ms CLEAN BLACK)
+            // Phase 4: Fade Out (2500-3000ms, 500ms fade)
+
+            // Vanish/Collapse at 1700ms
+            setTimeout(() => {
+                introText.classList.add('vanish');
+            }, 1700);
+
+            // Hide text completely after vanish (clean dark pause)
+            setTimeout(() => {
+                introText.style.opacity = '0';
+                introText.style.visibility = 'hidden';
+            }, 2000); // After vanish completes (1700 + 300ms)
+        }
+
+        // 3. Fade out overlay after dark pause (at 2500ms)
         setTimeout(() => {
             introOverlay.classList.add('fade-out');
             document.body.style.overflow = '';
-
-            // Trigger the rest of the site animations
             document.body.classList.add('is-loaded');
 
-            // Remove from DOM after transition
             setTimeout(() => {
                 introOverlay.remove();
-            }, 1000);
-        }, 1500);
+            }, 500); // Overlay fully removed at 3000ms
+        }, 2500);
     } else {
         // Fallback if no intro found
         window.addEventListener('load', () => {
