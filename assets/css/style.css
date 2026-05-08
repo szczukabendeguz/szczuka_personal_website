@@ -624,6 +624,328 @@ body.is-loaded .reveal-simple {
   margin-bottom: 1rem;
 }
 
+.work-intro {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.highlight-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 18px;
+  padding: 1.5rem;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(51, 51, 255, 0.35);
+  box-shadow: 0 12px 30px rgba(51, 51, 255, 0.12);
+}
+
+.highlight-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: #AAAAAA;
+}
+
+.highlight-title {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.work-subtitle {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.work-timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+.work-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(51, 51, 255, 0.9), rgba(0, 255, 255, 0.2));
+  opacity: 0.7;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 2.5rem 1rem;
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -0.15rem;
+  top: 0.3rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3333FF;
+  box-shadow: 0 0 12px rgba(51, 51, 255, 0.45);
+}
+
+.timeline-time {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #AAAAAA;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-role {
+  font-size: 0.95rem;
+  color: #AAAAAA;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.timeline-tag {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.75rem;
+  color: #FFFFFF;
+}
+
+.project-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.project-accordion-item {
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-accordion-item.project-card {
+  padding: 0;
+}
+
+.project-accordion-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.project-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-summary-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: #AAAAAA;
+}
+
+.project-summary-title {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 1.4rem;
+}
+
+.project-summary-meta {
+  margin: 0;
+}
+
+.project-accordion-icon {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.project-accordion-item[open] .project-accordion-icon {
+  transform: rotate(45deg);
+}
+
+.project-accordion-item[open] summary {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-accordion-body {
+  padding: 1.5rem 2rem 2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.project-media-placeholder {
+  background: linear-gradient(135deg, rgba(51, 51, 255, 0.15), rgba(0, 255, 255, 0.1));
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: #AAAAAA;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-link {
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+}
+
+.work-projects-layout {
+  margin-top: 1.5rem;
+}
+
+.project-menu-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 22px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 120px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(51, 51, 255, 0.05));
+}
+
+.project-menu {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.project-menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  text-decoration: none;
+  padding: 0.9rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 20, 35, 0.35);
+  transition: all 0.3s ease;
+}
+
+.project-menu-item:hover,
+.project-menu-item:focus-visible {
+  border-color: rgba(51, 51, 255, 0.4);
+  background: rgba(20, 30, 55, 0.5);
+  transform: translateX(6px);
+  box-shadow: 0 10px 24px rgba(51, 51, 255, 0.12);
+}
+
+.project-menu-item.is-active {
+  border-color: rgba(51, 51, 255, 0.65);
+  background: rgba(20, 35, 70, 0.7);
+  box-shadow: 0 12px 26px rgba(51, 51, 255, 0.18);
+  transform: translateX(8px);
+}
+
+.project-menu-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+  color: #AAAAAA;
+}
+
+.project-menu-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.project-menu-meta {
+  font-size: 0.75rem;
+  color: #AAAAAA;
+}
+
+.project-detail-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-detail-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 22px;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  scroll-margin-top: 140px;
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.35));
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  min-height: clamp(420px, 45vh, 540px);
+}
+
+.project-detail-card.is-active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(51, 51, 255, 0.7);
+  box-shadow: 0 18px 40px rgba(51, 51, 255, 0.2);
+}
+
+.project-detail-header {
+  margin-bottom: 1.2rem;
+}
+
+.project-detail-body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .project-accordion-body {
+    grid-template-columns: 1fr;
+  }
+  .project-detail-body {
+    grid-template-columns: 1fr;
+  }
+  .project-menu-card {
+    position: static;
+  }
+  .work-timeline {
+    padding-left: 1.5rem;
+  }
+}
 .container {
   position: relative;
   z-index: 2;
@@ -803,6 +1125,11 @@ body.is-loaded .reveal-simple {
   }
 }
 
+@media (min-width: 992px) {
+  .project-menu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 #intro-overlay {
   position: fixed;
   top: 0;
@@ -878,162 +1205,162 @@ body.is-loaded .reveal-simple {
   }
   20% {
     opacity: 1;
-    transform: scale(1.05) translateX(-8px) translateY(4px);
+    transform: scale(1.05) translateX(-2px) translateY(6px);
     color: #4E9A26;
     filter: blur(1px);
   }
   40% {
     opacity: 0.9;
-    transform: scale(0.95) translateX(16px) translateY(3px);
+    transform: scale(0.95) translateX(-4px) translateY(-19px);
     color: #AC1212;
     filter: blur(2px);
   }
   60% {
     opacity: 0.6;
-    transform: scale(0.7) translateX(-15px) translateY(15px) rotate(13deg);
+    transform: scale(0.7) translateX(-14px) translateY(-27px) rotate(12deg);
     color: #fff;
     filter: blur(3px);
   }
   80% {
     opacity: 0.3;
-    transform: scale(0.4) translateX(36px) translateY(-66px) rotate(-4deg);
+    transform: scale(0.4) translateX(8px) translateY(-56px) rotate(-10deg);
     filter: blur(5px);
   }
   100% {
     opacity: 0;
-    transform: scale(0.1) translateX(9px) translateY(95px) rotate(-23deg);
+    transform: scale(0.1) translateX(54px) translateY(-83px) rotate(17deg);
     filter: blur(10px);
     clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
   }
 }
 @keyframes glitch-animation-1 {
   0% {
-    clip: rect(139px, 9999px, 134px, 0);
+    clip: rect(139px, 9999px, 107px, 0);
   }
   5% {
-    clip: rect(70px, 9999px, 114px, 0);
+    clip: rect(52px, 9999px, 47px, 0);
   }
   10% {
-    clip: rect(113px, 9999px, 22px, 0);
+    clip: rect(78px, 9999px, 43px, 0);
   }
   15% {
-    clip: rect(140px, 9999px, 149px, 0);
+    clip: rect(148px, 9999px, 116px, 0);
   }
   20% {
-    clip: rect(34px, 9999px, 19px, 0);
+    clip: rect(125px, 9999px, 119px, 0);
   }
   25% {
-    clip: rect(66px, 9999px, 89px, 0);
+    clip: rect(26px, 9999px, 112px, 0);
   }
   30% {
-    clip: rect(80px, 9999px, 131px, 0);
+    clip: rect(77px, 9999px, 67px, 0);
   }
   35% {
-    clip: rect(147px, 9999px, 89px, 0);
+    clip: rect(150px, 9999px, 29px, 0);
   }
   40% {
-    clip: rect(127px, 9999px, 1px, 0);
+    clip: rect(142px, 9999px, 21px, 0);
   }
   45% {
-    clip: rect(96px, 9999px, 44px, 0);
+    clip: rect(86px, 9999px, 26px, 0);
   }
   50% {
-    clip: rect(9px, 9999px, 100px, 0);
+    clip: rect(137px, 9999px, 116px, 0);
   }
   55% {
-    clip: rect(36px, 9999px, 86px, 0);
+    clip: rect(80px, 9999px, 111px, 0);
   }
   60% {
-    clip: rect(29px, 9999px, 54px, 0);
+    clip: rect(49px, 9999px, 148px, 0);
   }
   65% {
-    clip: rect(8px, 9999px, 13px, 0);
+    clip: rect(35px, 9999px, 139px, 0);
   }
   70% {
-    clip: rect(101px, 9999px, 92px, 0);
+    clip: rect(127px, 9999px, 91px, 0);
   }
   75% {
-    clip: rect(101px, 9999px, 28px, 0);
+    clip: rect(132px, 9999px, 88px, 0);
   }
   80% {
-    clip: rect(117px, 9999px, 57px, 0);
+    clip: rect(97px, 9999px, 82px, 0);
   }
   85% {
-    clip: rect(102px, 9999px, 107px, 0);
+    clip: rect(56px, 9999px, 110px, 0);
   }
   90% {
-    clip: rect(59px, 9999px, 33px, 0);
+    clip: rect(32px, 9999px, 11px, 0);
   }
   95% {
-    clip: rect(84px, 9999px, 119px, 0);
+    clip: rect(90px, 9999px, 64px, 0);
   }
   100% {
-    clip: rect(63px, 9999px, 21px, 0);
+    clip: rect(105px, 9999px, 15px, 0);
   }
 }
 @keyframes glitch-animation-2 {
   0% {
-    clip: rect(87px, 9999px, 31px, 0);
+    clip: rect(6px, 9999px, 96px, 0);
   }
   5% {
-    clip: rect(93px, 9999px, 82px, 0);
+    clip: rect(88px, 9999px, 55px, 0);
   }
   10% {
-    clip: rect(80px, 9999px, 25px, 0);
+    clip: rect(73px, 9999px, 147px, 0);
   }
   15% {
-    clip: rect(67px, 9999px, 7px, 0);
+    clip: rect(23px, 9999px, 75px, 0);
   }
   20% {
-    clip: rect(120px, 9999px, 117px, 0);
+    clip: rect(106px, 9999px, 56px, 0);
   }
   25% {
-    clip: rect(84px, 9999px, 87px, 0);
+    clip: rect(82px, 9999px, 147px, 0);
   }
   30% {
-    clip: rect(7px, 9999px, 13px, 0);
+    clip: rect(31px, 9999px, 95px, 0);
   }
   35% {
-    clip: rect(120px, 9999px, 34px, 0);
+    clip: rect(88px, 9999px, 125px, 0);
   }
   40% {
-    clip: rect(73px, 9999px, 45px, 0);
+    clip: rect(58px, 9999px, 52px, 0);
   }
   45% {
-    clip: rect(1px, 9999px, 39px, 0);
+    clip: rect(82px, 9999px, 73px, 0);
   }
   50% {
-    clip: rect(18px, 9999px, 58px, 0);
+    clip: rect(140px, 9999px, 13px, 0);
   }
   55% {
-    clip: rect(11px, 9999px, 136px, 0);
+    clip: rect(115px, 9999px, 35px, 0);
   }
   60% {
-    clip: rect(22px, 9999px, 80px, 0);
+    clip: rect(99px, 9999px, 67px, 0);
   }
   65% {
-    clip: rect(48px, 9999px, 29px, 0);
+    clip: rect(74px, 9999px, 39px, 0);
   }
   70% {
-    clip: rect(70px, 9999px, 121px, 0);
+    clip: rect(123px, 9999px, 24px, 0);
   }
   75% {
-    clip: rect(134px, 9999px, 130px, 0);
+    clip: rect(38px, 9999px, 4px, 0);
   }
   80% {
-    clip: rect(54px, 9999px, 25px, 0);
+    clip: rect(95px, 9999px, 10px, 0);
   }
   85% {
-    clip: rect(122px, 9999px, 129px, 0);
+    clip: rect(72px, 9999px, 120px, 0);
   }
   90% {
-    clip: rect(143px, 9999px, 125px, 0);
+    clip: rect(89px, 9999px, 48px, 0);
   }
   95% {
-    clip: rect(120px, 9999px, 68px, 0);
+    clip: rect(65px, 9999px, 18px, 0);
   }
   100% {
-    clip: rect(123px, 9999px, 115px, 0);
+    clip: rect(31px, 9999px, 70px, 0);
   }
 }
 @media (max-width: 991.98px) {

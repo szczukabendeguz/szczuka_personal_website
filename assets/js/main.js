@@ -106,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4. Smooth Anchor Scrolling ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            if (this.matches('[data-project]')) {
+                return;
+            }
+
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -116,6 +120,63 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- 4.1 Project Menu Selection ---
+    const projectMenu = document.querySelector('[data-project-menu]');
+    const projectPanels = document.querySelector('[data-project-panels]');
+
+    if (projectMenu && projectPanels) {
+        const menuItems = Array.from(projectMenu.querySelectorAll('.project-menu-item'));
+        const panels = Array.from(projectPanels.querySelectorAll('.project-detail-card'));
+
+        const setActiveProject = (projectId, updateHash = true) => {
+            const nextMenuItem = menuItems.find(item => item.dataset.project === projectId);
+            const nextPanel = panels.find(panel => panel.dataset.project === projectId);
+
+            if (!nextMenuItem || !nextPanel) {
+                return;
+            }
+
+            menuItems.forEach(item => item.classList.remove('is-active'));
+            panels.forEach(panel => panel.classList.remove('is-active'));
+
+            nextMenuItem.classList.add('is-active');
+            nextPanel.classList.add('is-active', 'is-visible');
+
+            if (updateHash) {
+                history.pushState(null, '', `#${projectId}`);
+            }
+        };
+
+        const initialHash = window.location.hash.replace('#', '');
+        const initialProject = menuItems.some(item => item.dataset.project === initialHash)
+            ? initialHash
+            : (menuItems[0] ? menuItems[0].dataset.project : null);
+
+        if (initialProject) {
+            setActiveProject(initialProject, false);
+        }
+
+        projectMenu.addEventListener('click', (event) => {
+            const targetItem = event.target.closest('.project-menu-item');
+            if (!targetItem) {
+                return;
+            }
+
+            event.preventDefault();
+            const projectId = targetItem.dataset.project;
+            if (projectId) {
+                setActiveProject(projectId, true);
+            }
+        });
+
+        window.addEventListener('hashchange', () => {
+            const nextHash = window.location.hash.replace('#', '');
+            if (nextHash) {
+                setActiveProject(nextHash, false);
+            }
+        });
+    }
 
     // --- 5. Toggle Switch Interaction ---
     const toggleSwitch = document.querySelector('.toggle-switch');
