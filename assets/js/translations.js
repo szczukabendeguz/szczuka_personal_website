@@ -25,24 +25,10 @@ const translations = {
         strength_time_mgmt: "Time Management",
 
         work_title: "Experience & Projects",
-        work_intro: "A unified project index with deep dives, links, and full case studies.",
-
         work_menu_label: "Project Index",
         work_menu_title: "All projects",
         work_menu_desc: "A clean index for deep dives. Select a project to jump to its full details.",
 
-        work_highlight_1_kicker: "Focus",
-        work_highlight_1_title: "Full-stack Products",
-        work_highlight_1_desc: "CodeLingo, booking systems, and end-to-end delivery.",
-        work_highlight_2_kicker: "Focus",
-        work_highlight_2_title: "DevOps & Automation",
-        work_highlight_2_desc: "PowerShell, n8n flows, identity, and ops hardening.",
-        work_highlight_3_kicker: "Focus",
-        work_highlight_3_title: "Embedded & Robotics",
-        work_highlight_3_desc: "ESP32 maze robots, sensors, PID tuning.",
-        work_highlight_4_kicker: "Focus",
-        work_highlight_4_title: "Data & Simulation",
-        work_highlight_4_desc: "Election simulator, D'Hondt logic, scenario modeling.",
 
         work_timeline_label: "Experience Timeline",
         work_timeline_title: "Where I've contributed",
@@ -99,6 +85,9 @@ const translations = {
         work_project_2_link_1: "Team Jerry",
         work_project_2_link_2: "Jerry3 repo",
         work_project_2_link_3: "Arduino repo",
+        work_project_2_link_4: "II. Report",
+        work_project_2_link_5: "III. Report",
+        work_project_2_link_6: "III. Rematch",
 
         work_project_3_kicker: "Product",
         work_project_3_title: "CodeLingo",
@@ -119,7 +108,7 @@ const translations = {
         work_project_4_point_1: "Led the team through production planning and delivery.",
         work_project_4_point_2: "Handled web presence and booking flow foundations.",
         work_project_4_point_3: "Audience communication and promotion assets.",
-        work_project_4_link_1: "Workshop site",
+        work_project_4_link_1: "Facebook",
         work_project_4_link_2: "Booking repo",
         work_project_4_link_3: "Case study",
 
@@ -241,24 +230,10 @@ const translations = {
         strength_time_mgmt: "Időmenedzsment",
 
         work_title: "Tapasztalat & Projektek",
-        work_intro: "Egységes projektindex részletes bemutatókkal, linkekkel és esettanulmányokkal.",
-
         work_menu_label: "Projektindex",
         work_menu_title: "Minden projekt",
         work_menu_desc: "Letisztult lista a részletes bemutatókhoz. Válassz projektet a teljes leíráshoz.",
 
-        work_highlight_1_kicker: "Fókusz",
-        work_highlight_1_title: "Full-stack termékek",
-        work_highlight_1_desc: "CodeLingo, jegyfoglalás és end-to-end szállítás.",
-        work_highlight_2_kicker: "Fókusz",
-        work_highlight_2_title: "DevOps & Automatizálás",
-        work_highlight_2_desc: "PowerShell, n8n flow-k, identity és ops hardening.",
-        work_highlight_3_kicker: "Fókusz",
-        work_highlight_3_title: "Embedded & Robotika",
-        work_highlight_3_desc: "ESP32 labirintusrobot, szenzorok, PID hangolás.",
-        work_highlight_4_kicker: "Fókusz",
-        work_highlight_4_title: "Adat & Szimuláció",
-        work_highlight_4_desc: "Választási szimulátor, D'Hondt logika, forgatókönyvek.",
 
         work_timeline_label: "Tapasztalat Idővonal",
         work_timeline_title: "Ahol hozzátettem",
@@ -315,6 +290,9 @@ const translations = {
         work_project_2_link_1: "Team Jerry",
         work_project_2_link_2: "Jerry3 repo",
         work_project_2_link_3: "Arduino repo",
+        work_project_2_link_4: "II. Beszámoló",
+        work_project_2_link_5: "III. Beszámoló",
+        work_project_2_link_6: "III. Visszavágó",
 
         work_project_3_kicker: "Termék",
         work_project_3_title: "CodeLingo",
@@ -335,7 +313,7 @@ const translations = {
         work_project_4_point_1: "Csapatvezetés és produkciós tervezés.",
         work_project_4_point_2: "Webes jelenlét és jegyfoglalás alapjai.",
         work_project_4_point_3: "Közönségkommunikáció és promóciós anyagok.",
-        work_project_4_link_1: "Műhely oldal",
+        work_project_4_link_1: "Facebook",
         work_project_4_link_2: "Booking repo",
         work_project_4_link_3: "Esettanulmány",
 
