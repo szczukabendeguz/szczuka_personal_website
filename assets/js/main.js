@@ -440,16 +440,33 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // 3. Find ALL projects that have this tech
+            // Mapping from translation key number to slug-based project ID
+            const projectSlugMap = {
+                '1': 'damocles',
+                '2': 'bosch-team',
+                '3': 'codelingo',
+                '4': 'nullpont-workshop',
+                '5': 'valasztas-2026',
+                '6': 'esp32-tuner',
+                '7': 'nullpont-booking',
+                '8': 'bikestore',
+                '9': 'carrental',
+                '10': 'arduino-maze'
+            };
+
             const matchedProjectIds = projectTechKeys.filter(key => {
                 const html = translations[lang][key];
                 const searchDiv = document.createElement('div');
                 searchDiv.innerHTML = html;
                 return Array.from(searchDiv.querySelectorAll('.tech-tag')).some(t => t.textContent.trim() === techName);
-            }).map(key => key.replace('work_project_', '').replace('_tech', ''));
+            }).map(key => {
+                const num = key.replace('work_project_', '').replace('_tech', '');
+                return projectSlugMap[num] || num;
+            });
 
             // 4. Mark projects in the menu
             matchedProjectIds.forEach(id => {
-                const projectId = `project-${id}`;
+                const projectId = id;
                 const menuItems = document.querySelectorAll(`[data-project="${projectId}"]`);
                 menuItems.forEach(item => item.classList.add('has-tech'));
             });
