@@ -105,3 +105,22 @@
         transform: translateY(0);
     }
 }
+
+// 6. Pulse Glow
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+        box-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 5px rgba(0, 243, 255, 0.5);
+    }
+}

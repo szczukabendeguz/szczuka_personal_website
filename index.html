@@ -26,12 +26,6 @@
 </head>
 
 <body>
-    <!-- Intro Overlay -->
-    <div id="intro-overlay">
-        <div class="glitch-wrapper">
-            <h1 class="glitch" data-text="Hello World">Hello World</h1>
-        </div>
-    </div>
 
     <!-- SVG Clip Paths for Responsive Shapes -->
     <svg width="0" height="0" style="position: absolute; pointer-events: none;">
@@ -221,7 +215,6 @@
                     <h2 class="display-2" data-i18n="work_title">Experience & Projects</h2>
                 </div>
             </div>
-
             <div class="row g-5 align-items-start work-projects-layout">
                 <div class="col-lg-5">
                     <div class="project-menu-card reveal-on-scroll">
@@ -380,6 +373,8 @@
                                             with Arduino upgrade.</li>
                                         <li data-i18n="work_project_2_point_3">2023: 3rd place in the maze-solving
                                             competition.</li>
+                                        <li data-i18n="work_project_2_point_4"></li>
+                                        <li data-i18n="work_project_2_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://www.teamjerry.hu" target="_blank"
@@ -433,6 +428,7 @@
                                         <li data-i18n="work_project_6_point_2">Hardware-software integration and testing rig.</li>
                                         <li data-i18n="work_project_6_point_3">3rd place at the 2026 university TDK.</li>
                                         <li data-i18n="work_project_6_point_4">Awarded 3rd place at the 2026 University TDK.</li>
+                                        <li data-i18n="work_project_6_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://github.com/szczukabendeguz/ESP32VariableTuner-public"
@@ -477,6 +473,8 @@
                                             analytics.</li>
                                         <li data-i18n="work_project_3_point_3">CI/CD pipeline and deployment strategy.
                                         </li>
+                                        <li data-i18n="work_project_3_point_4"></li>
+                                        <li data-i18n="work_project_3_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://codelingo.hu" target="_blank"
@@ -514,6 +512,8 @@
                                             foundations.</li>
                                         <li data-i18n="work_project_4_point_3">Audience communication and promotion
                                             assets.</li>
+                                        <li data-i18n="work_project_4_point_4"></li>
+                                        <li data-i18n="work_project_4_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://www.facebook.com/nullpontmuhely/" target="_blank"
@@ -554,6 +554,8 @@
                                             reports.</li>
                                         <li data-i18n="work_project_5_point_3">UX focused on clarity and data trust.
                                         </li>
+                                        <li data-i18n="work_project_5_point_4"></li>
+                                        <li data-i18n="work_project_5_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://szczukabendeguz.github.io/Valasztas2026/" target="_blank"
@@ -588,6 +590,8 @@
                                         <li data-i18n="work_project_7_point_2">Capacity checks and automated
                                             notifications.</li>
                                         <li data-i18n="work_project_7_point_3">Deployment tied to the theater site.</li>
+                                        <li data-i18n="work_project_7_point_4"></li>
+                                        <li data-i18n="work_project_7_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://szczukabendeguz.github.io/booking_webapp_nullpontmuhely/" target="_blank"
@@ -625,6 +629,8 @@
                                         <li data-i18n="work_project_8_point_2">Identity + JWT auth and SQL Server
                                             storage.</li>
                                         <li data-i18n="work_project_8_point_3">AutoMapper and clean data contracts.</li>
+                                        <li data-i18n="work_project_8_point_4"></li>
+                                        <li data-i18n="work_project_8_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://github.com/szczukabendeguz/Fullstack_BikeStore" target="_blank"
@@ -659,6 +665,8 @@
                                         </li>
                                         <li data-i18n="work_project_9_point_3">Focus on maintainability and testing.
                                         </li>
+                                        <li data-i18n="work_project_9_point_4"></li>
+                                        <li data-i18n="work_project_9_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://github.com/szczukabendeguz/ASP.NET_CarRental" target="_blank"
@@ -694,6 +702,8 @@
                                             logging.</li>
                                         <li data-i18n="work_project_10_point_3">Built for competition iteration cycles.
                                         </li>
+                                        <li data-i18n="work_project_10_point_4"></li>
+                                        <li data-i18n="work_project_10_point_5"></li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://github.com/szczukabendeguz/ArduinoMazeSolvingRobot"
@@ -712,13 +722,24 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row mt-5 pt-5 reveal-on-scroll">
+                <div class="col-12 text-center">
+                    <div class="project-tech-stack border-top-0 pt-0">
+                        <div class="text-uppercase small text-white-50 mb-4" data-i18n="work_tech_stack_label">Tech Stack</div>
+                        <div class="d-flex flex-wrap justify-content-center gap-y-4 gap-x-3" id="global-tech-stack">
+                            <!-- Tech tags will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section-padding text-center position-relative overflow-hidden">
         <div class="glow-orb"
-            style="top: 50%; left: 50%; width: 80vw; max-width: 600px; height: 80vw; max-height: 600px; background: #3333FF; transform: translate(-50%, -50%); opacity: 0.2;">
+            style="top: 50%; left: 50%; width: 60vw; max-width: 600px; height: 60vw; max-height: 600px; background: #3333FF; transform: translate(-50%, -50%); opacity: 0.2;">
         </div>
 
         <div class="container position-relative z-2">

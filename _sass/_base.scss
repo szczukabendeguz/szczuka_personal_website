@@ -2,6 +2,10 @@
 html {
     overflow-x: hidden;
     overflow-y: auto;
+
+    @media (max-width: 768px) {
+        font-size: 12px; // Scale down to 75% of default 16px
+    }
 }
 
 body {
@@ -111,6 +115,10 @@ a {
         z-index: 2;
         margin: 0;
 
+        @media (max-width: 768px) {
+            font-size: clamp(2rem, 7.5vw, 8rem);
+        }
+
         .text-mask {
             display: block;
             overflow: hidden;
@@ -171,6 +179,11 @@ a {
     // Safari fallback: explicit height for older versions
     height: 63vw; // 90vw * 0.7 (aspect ratio)
     max-height: 350px;
+
+    @media (max-width: 768px) {
+        width: 65vw;
+        height: 45vw;
+    }
 
     // Modern browsers: use aspect-ratio
     @supports (aspect-ratio: 1) {
@@ -260,6 +273,11 @@ a {
     height: 60vw;
     max-height: 300px;
 
+    @media (max-width: 768px) {
+        width: 45vw;
+        height: 45vw;
+    }
+
     @supports (aspect-ratio: 1) {
         height: auto;
         aspect-ratio: 1/1;
@@ -299,6 +317,11 @@ a {
     // Safari fallback
     height: 65vw;
     max-height: 320px;
+
+    @media (max-width: 768px) {
+        width: 45vw;
+        height: 45vw;
+    }
 
     @supports (aspect-ratio: 1) {
         height: auto;
@@ -558,6 +581,7 @@ a {
 
     @media (max-width: 768px) {
         top: 80vh;
+        right: calc(-32.5vw - 100px);
     }
 }
 
@@ -569,6 +593,11 @@ a {
     // Safari fallback
     height: 90vw;
     max-height: 700px;
+
+    @media (max-width: 768px) {
+        width: 65vw;
+        height: 65vw;
+    }
 
     @supports (aspect-ratio: 1) {
         height: auto;
@@ -1153,6 +1182,47 @@ body.is-loaded {
 
 .delay-300 {
     transition-delay: 0.3s;
+}
+
+// Global Tech Stack Interactions
+.global-tech-tag {
+    cursor: pointer;
+    
+    &.is-highlighted {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-weight: 700;
+    }
+
+    &.is-active {
+        color: $neon-blue !important;
+        text-shadow: 0 0 15px rgba($neon-blue, 0.5);
+        transform: scale(1.1) translateY(-2px);
+    }
+}
+
+// Tech Match Indicators
+.project-menu-item.has-tech {
+    border-color: rgba($neon-blue, 0.4) !important;
+    background: rgba($neon-blue, 0.05) !important;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 6px;
+        height: 6px;
+        background: $neon-blue;
+        border-radius: 50%;
+        animation: pulse-glow 2s infinite ease-in-out;
+    }
+}
+
+.mobile-project-pill.has-tech {
+    border-color: rgba($neon-blue, 0.6) !important;
+    background: rgba($neon-blue, 0.15) !important;
+    box-shadow: 0 0 10px rgba($neon-blue, 0.3) !important;
 }
 
 // Hobby Tags (Frosted Glass)

@@ -1,52 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 0. Initial Load & Intro Animation ---
-    const introOverlay = document.getElementById('intro-overlay');
-    const introText = document.querySelector('.glitch');
-
-    if (introOverlay) {
-        // Disable scroll initially
-        document.body.style.overflow = 'hidden';
-
-        if (introText) {
-            // Ensure data-text is set for the CSS pseudo-elements
-            const textContent = introText.innerText || introText.dataset.text || "Hello World";
-            introText.setAttribute('data-text', textContent);
-
-            // Compressed Sequence (Total: 3s)
-            // Phase 1: Original Glitch (0-1700ms)
-            // Phase 2: Vanish/Collapse (1700-2000ms, 300ms duration)
-            // Phase 3: Dark Pause (2000-2500ms, 500ms CLEAN BLACK)
-            // Phase 4: Fade Out (2500-3000ms, 500ms fade)
-
-            // Vanish/Collapse at 1700ms
-            setTimeout(() => {
-                introText.classList.add('vanish');
-            }, 1700);
-
-            // Hide text completely after vanish (clean dark pause)
-            setTimeout(() => {
-                introText.style.opacity = '0';
-                introText.style.visibility = 'hidden';
-            }, 2000); // After vanish completes (1700 + 300ms)
-        }
-
-        // 3. Fade out overlay after dark pause (at 2500ms)
-        setTimeout(() => {
-            introOverlay.classList.add('fade-out');
-            document.body.style.overflow = '';
-            document.body.classList.add('is-loaded');
-
-            setTimeout(() => {
-                introOverlay.remove();
-            }, 500); // Overlay fully removed at 3000ms
-        }, 2500);
-    } else {
-        // Fallback if no intro found
-        window.addEventListener('load', () => {
-            document.body.classList.add('is-loaded');
-        });
-    }
+    // --- 0. Page Initialization ---
+    document.body.classList.add('is-loaded');
 
     // --- 1. Soft Scroll Reveal Engine ---
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
@@ -191,10 +146,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (menuCard) {
                     const rect = menuCard.getBoundingClientRect();
                     const absoluteTop = window.pageYOffset + rect.top;
-                    window.scrollTo({
-                        top: absoluteTop - 100, // Offset for sticky navbar
-                        behavior: 'smooth'
-                    });
+                    const targetPosition = absoluteTop - 100;
+
+                    // Only scroll down if the target is below our current position
+                    if (window.pageYOffset < targetPosition) {
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
         }
@@ -421,5 +381,126 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
     });
+
+    // --- 7. Global Tech Stack Cloud ---
+    function initGlobalTechStack() {
+        const cloudContainer = document.getElementById('global-tech-stack');
+        if (!cloudContainer) return;
+
+        // Get current language from localStorage or default
+        const lang = localStorage.getItem('site-lang') || 'en';
+        
+        // Safety check if translations are loaded
+        if (typeof translations === 'undefined' || !translations[lang]) return;
+
+        const projectTechKeys = Object.keys(translations[lang]).filter(key => key.startsWith('work_project_') && key.endsWith('_tech'));
+        
+        const allTechHtml = projectTechKeys.map(key => translations[lang][key]).join('');
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = allTechHtml;
+        
+        const tags = Array.from(tempDiv.querySelectorAll('.tech-tag'));
+        const techFrequencies = {};
+        tags.forEach(tag => {
+            const name = tag.textContent.trim();
+            techFrequencies[name] = (techFrequencies[name] || 0) + 1;
+        });
+
+        const uniqueTech = Object.keys(techFrequencies);
+
+        // Sort alphabetically
+        uniqueTech.sort((a, b) => a.localeCompare(b));
+
+        cloudContainer.innerHTML = uniqueTech.map(tech => {
+            const freq = techFrequencies[tech] || 0;
+            // Highlight if frequency is 3 or more, or if it's "Jira"
+            const isHighlighted = freq >= 3 || tech.toLowerCase() === 'jira';
+            const highlightClass = isHighlighted ? 'is-highlighted' : '';
+            
+            return `
+                <span class="tech-tag global-tech-tag ${highlightClass}" data-tech="${tech}">
+                    ${tech}
+                </span>
+            `;
+        }).join('');
+
+        cloudContainer.addEventListener('click', (e) => {
+            const tag = e.target.closest('.global-tech-tag');
+            if (!tag) return;
+            
+            const techName = tag.dataset.tech;
+            
+            // 1. Highlight the active tag in the cloud
+            cloudContainer.querySelectorAll('.global-tech-tag').forEach(t => t.classList.remove('is-active'));
+            tag.classList.add('is-active');
+
+            // 2. Clear previous indicators from the project menu
+            document.querySelectorAll('.project-menu-item, .mobile-project-pill').forEach(item => {
+                item.classList.remove('has-tech');
+            });
+
+            // 3. Find ALL projects that have this tech
+            const matchedProjectIds = projectTechKeys.filter(key => {
+                const html = translations[lang][key];
+                const searchDiv = document.createElement('div');
+                searchDiv.innerHTML = html;
+                return Array.from(searchDiv.querySelectorAll('.tech-tag')).some(t => t.textContent.trim() === techName);
+            }).map(key => key.replace('work_project_', '').replace('_tech', ''));
+
+            // 4. Mark projects in the menu
+            matchedProjectIds.forEach(id => {
+                const projectId = `project-${id}`;
+                const menuItems = document.querySelectorAll(`[data-project="${projectId}"]`);
+                menuItems.forEach(item => item.classList.add('has-tech'));
+            });
+
+            // 5. Navigate to the first project that has this tech
+            const firstProjectId = matchedProjectIds[0];
+            if (firstProjectId) {
+                const projectId = `project-${firstProjectId}`;
+                
+                // Find and click the menu item
+                const menuLink = document.querySelector(`.project-menu-item[data-project="${projectId}"]`) || 
+                                 document.querySelector(`.mobile-project-pill[data-project="${projectId}"]`);
+                
+                if (menuLink) {
+                    menuLink.click();
+                    
+                    // Smoothly scroll to the work section layout
+                    const projectsLayout = document.querySelector('.work-projects-layout');
+                    if (projectsLayout) {
+                        const offset = 120; // Sticky header offset
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = projectsLayout.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const targetPosition = elementPosition - offset;
+
+                        // Only scroll down if the target is below our current position
+                        if (window.pageYOffset < targetPosition) {
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Initialize the cloud
+    initGlobalTechStack();
+
+    // Re-initialize on language change
+    // We can listen for the toggle button or just override window.toggleLanguage
+    const originalToggleLanguage = window.toggleLanguage;
+    if (originalToggleLanguage) {
+        window.toggleLanguage = function() {
+            originalToggleLanguage();
+            // Wait a tiny bit for translations to apply if needed, 
+            // though translations.js is synchronous
+            initGlobalTechStack();
+        };
+    }
 
 });
