@@ -230,19 +230,42 @@
                         <p class="text-white-50" data-i18n="work_menu_desc">
                             A clean index for deep dives. Select a project to jump to its full details.
                         </p>
-                        <nav class="project-menu" data-project-menu>
-                            <a class="project-menu-item is-active" href="#project-1" data-project="project-1">
+                        <!-- Mobile Project Selector (Pills matching Hobby Tags) -->
+                        <div class="d-lg-none mb-4 mobile-project-nav-wrapper">
+                            <nav class="mobile-project-nav" id="mobileProjectNav">
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill is-active is-featured" data-project="project-1" data-i18n="work_project_1_title">Damocles Kft.</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill is-featured" data-project="project-2" data-i18n="work_project_2_title">Bosch Team</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill is-featured" data-project="project-6" data-i18n="work_project_6_title">ESP32 Tuner</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-3" data-i18n="work_project_3_title">CodeLingo</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-4" data-i18n="work_project_4_title">Nullpont Theater</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-5" data-i18n="work_project_5_title">Valasztas 2026</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-7" data-i18n="work_project_7_title">Nullpont Booking</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-8" data-i18n="work_project_8_title">BikeStore</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-9" data-i18n="work_project_9_title">CarRental</button>
+                                <button class="badge rounded-pill fw-normal px-3 py-2 hobby-tag mobile-project-pill" data-project="project-10" data-i18n="work_project_10_title">Arduino Maze</button>
+                            </nav>
+                        </div>
+
+                        <nav class="project-menu d-none d-lg-grid" data-project-menu>
+                            <a class="project-menu-item is-active is-featured" href="#project-1" data-project="project-1">
                                 <span class="project-menu-kicker" data-i18n="work_project_1_kicker">Company</span>
                                 <span class="project-menu-title" data-i18n="work_project_1_title">Damocles Kft.</span>
                                 <span class="project-menu-meta" data-i18n="work_project_1_meta">2024 - Present · IT Ops
                                     & Automation</span>
                             </a>
-                            <a class="project-menu-item" href="#project-2" data-project="project-2">
+                            <a class="project-menu-item is-featured" href="#project-2" data-project="project-2">
                                 <span class="project-menu-kicker" data-i18n="work_project_2_kicker">Team</span>
                                 <span class="project-menu-title" data-i18n="work_project_2_title">Bosch Robot-Building
                                     Team</span>
                                 <span class="project-menu-meta" data-i18n="work_project_2_meta">2023 - 2026 ·
                                     Robotics</span>
+                            </a>
+                            <a class="project-menu-item is-featured" href="#project-6" data-project="project-6">
+                                <span class="project-menu-kicker" data-i18n="work_project_6_kicker">Embedded</span>
+                                <span class="project-menu-title"
+                                    data-i18n="work_project_6_title">ESP32VariableTuner</span>
+                                <span class="project-menu-meta" data-i18n="work_project_6_meta">2025 - 2026 ·
+                                    Firmware</span>
                             </a>
                             <a class="project-menu-item" href="#project-3" data-project="project-3">
                                 <span class="project-menu-kicker" data-i18n="work_project_3_kicker">Product</span>
@@ -262,13 +285,6 @@
                                 <span class="project-menu-title" data-i18n="work_project_5_title">Valasztas 2026</span>
                                 <span class="project-menu-meta" data-i18n="work_project_5_meta">2024 - 2026 ·
                                     Simulation</span>
-                            </a>
-                            <a class="project-menu-item" href="#project-6" data-project="project-6">
-                                <span class="project-menu-kicker" data-i18n="work_project_6_kicker">Embedded</span>
-                                <span class="project-menu-title"
-                                    data-i18n="work_project_6_title">ESP32VariableTuner</span>
-                                <span class="project-menu-meta" data-i18n="work_project_6_meta">2025 - 2026 ·
-                                    Firmware</span>
                             </a>
                             <a class="project-menu-item" href="#project-7" data-project="project-7">
                                 <span class="project-menu-kicker" data-i18n="work_project_7_kicker">Product</span>
@@ -302,7 +318,7 @@
 
                 <div class="col-lg-7">
                     <div class="project-detail-stack" data-project-panels>
-                        <article id="project-1" class="project-detail-card reveal-on-scroll delay-100 is-active"
+                        <article id="project-1" class="project-detail-card is-active is-featured"
                             data-project="project-1">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_1_kicker">Company</div>
@@ -323,17 +339,27 @@
                                             webhook/API flows.</li>
                                         <li data-i18n="work_project_1_point_3">Runbooks, knowledge base, and stakeholder
                                             comms.</li>
+                                        <li data-i18n="work_project_1_point_4">Website development</li>
+                                        <li data-i18n="work_project_1_point_5">Client-side web development and fixes</li>
                                     </ul>
                                     <div class="project-links">
                                         <a href="https://damocles.hu" target="_blank"
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_1_link_1">Company site</a>
+                                        <a href="https://www.linkedin.com/company/damocles-kft/" target="_blank"
+                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
+                                            data-i18n="work_project_1_link_2">LinkedIn</a>
+                                    </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_1_tech">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-2" class="project-detail-card reveal-on-scroll delay-200"
+                        <article id="project-2" class="project-detail-card is-featured"
                             data-project="project-2">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_2_kicker">Team</div>
@@ -380,11 +406,58 @@
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_2_link_6">III. Rematch</a>
                                     </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_2_tech">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-3" class="project-detail-card reveal-on-scroll delay-300"
+                        <article id="project-6" class="project-detail-card is-featured"
+                            data-project="project-6">
+                            <div class="project-detail-header">
+                                <div class="project-summary-kicker" data-i18n="work_project_6_kicker">Embedded</div>
+                                <h4 class="project-summary-title" data-i18n="work_project_6_title">ESP32VariableTuner
+                                </h4>
+                                <div class="project-summary-meta text-white-50 small" data-i18n="work_project_6_meta">
+                                    2025 - 2026 · Firmware</div>
+                            </div>
+                            <div class="project-detail-body">
+                                <div class="project-detail-content">
+                                    <p class="text-white-50" data-i18n="work_project_6_desc">TDK project for tuning
+                                        control systems with ESP32 hardware.</p>
+                                    <ul class="text-white-50 small ps-3">
+                                        <li data-i18n="work_project_6_point_1">PID tuning tooling with sensor feedback.</li>
+                                        <li data-i18n="work_project_6_point_2">Hardware-software integration and testing rig.</li>
+                                        <li data-i18n="work_project_6_point_3">3rd place at the 2026 university TDK.</li>
+                                        <li data-i18n="work_project_6_point_4">Awarded 3rd place at the 2026 University TDK.</li>
+                                    </ul>
+                                    <div class="project-links">
+                                        <a href="https://github.com/szczukabendeguz/ESP32VariableTuner-public"
+                                            target="_blank"
+                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
+                                            data-i18n="work_project_6_link_1">Repository</a>
+                                        <a href="https://registry.platformio.org/libraries/szczukabendeguz/ESP32VariableTuner"
+                                            target="_blank"
+                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
+                                            data-i18n="work_project_6_link_2">PlatformIO library</a>
+                                        <a href="https://uni-obuda.hu/wp-content/uploads/2026/05/TDK_2026_tavasz_dijazottak.pdf"
+                                            target="_blank"
+                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
+                                            data-i18n="work_project_6_link_3">TDK Results (PDF)</a>
+                                    </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_6_tech">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article id="project-3" class="project-detail-card"
                             data-project="project-3">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_3_kicker">Product</div>
@@ -410,11 +483,16 @@
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_3_link_1">CodeLingo live</a>
                                     </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_3_tech">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-4" class="project-detail-card reveal-on-scroll delay-200"
+                        <article id="project-4" class="project-detail-card"
                             data-project="project-4">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_4_kicker">Workshop</div>
@@ -441,16 +519,23 @@
                                         <a href="https://www.facebook.com/nullpontmuhely/" target="_blank"
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_4_link_1">Facebook</a>
-                                        <a href="https://github.com/szczukabendeguz/booking_webapp_nullpontmuhely"
-                                            target="_blank"
+                                        <a href="https://szczukabendeguz.github.io/Budapesten_webapp/" target="_blank"
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
-                                            data-i18n="work_project_4_link_2">Booking repo</a>
+                                            data-i18n="work_project_4_link_2">Budapesten site</a>
+                                        <a href="https://github.com/szczukabendeguz/Budapesten_webapp" target="_blank"
+                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
+                                            data-i18n="work_project_4_link_3">Budapesten repo</a>
+                                    </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_4_tech">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-5" class="project-detail-card reveal-on-scroll delay-100"
+                        <article id="project-5" class="project-detail-card"
                             data-project="project-5">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_5_kicker">Data</div>
@@ -475,46 +560,18 @@
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_5_link_1">Live demo</a>
                                     </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article id="project-6" class="project-detail-card reveal-on-scroll delay-200"
-                            data-project="project-6">
-                            <div class="project-detail-header">
-                                <div class="project-summary-kicker" data-i18n="work_project_6_kicker">Embedded</div>
-                                <h4 class="project-summary-title" data-i18n="work_project_6_title">ESP32VariableTuner
-                                </h4>
-                                <div class="project-summary-meta text-white-50 small" data-i18n="work_project_6_meta">
-                                    2025 - 2026 · Firmware</div>
-                            </div>
-                            <div class="project-detail-body">
-                                <div class="project-detail-content">
-                                    <p class="text-white-50" data-i18n="work_project_6_desc">TDK project for tuning
-                                        control systems with ESP32 hardware.</p>
-                                    <ul class="text-white-50 small ps-3">
-                                        <li data-i18n="work_project_6_point_1">PID tuning tooling with sensor feedback.
-                                        </li>
-                                        <li data-i18n="work_project_6_point_2">Hardware-software integration and testing
-                                            rig.</li>
-                                        <li data-i18n="work_project_6_point_3">3rd place at the 2026 university TDK.
-                                        </li>
-                                    </ul>
-                                    <div class="project-links">
-                                        <a href="https://github.com/szczukabendeguz/ESP32VariableTuner-public"
-                                            target="_blank"
-                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
-                                            data-i18n="work_project_6_link_1">Repository</a>
-                                        <a href="https://registry.platformio.org/libraries/szczukabendeguz/ESP32VariableTuner"
-                                            target="_blank"
-                                            class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
-                                            data-i18n="work_project_6_link_2">PlatformIO library</a>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_5_tech">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-7" class="project-detail-card reveal-on-scroll delay-300"
+
+
+                        <article id="project-7" class="project-detail-card"
                             data-project="project-7">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_7_kicker">Product</div>
@@ -533,19 +590,24 @@
                                         <li data-i18n="work_project_7_point_3">Deployment tied to the theater site.</li>
                                     </ul>
                                     <div class="project-links">
-                                        <a href="https://nullpontmuhely.hu" target="_blank"
+                                        <a href="https://szczukabendeguz.github.io/booking_webapp_nullpontmuhely/" target="_blank"
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
-                                            data-i18n="work_project_7_link_1">Live site</a>
+                                            data-i18n="work_project_7_link_1">Demo site</a>
                                         <a href="https://github.com/szczukabendeguz/booking_webapp_nullpontmuhely"
                                             target="_blank"
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_7_link_2">Repository</a>
                                     </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_7_tech">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-8" class="project-detail-card reveal-on-scroll delay-200"
+                        <article id="project-8" class="project-detail-card"
                             data-project="project-8">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_8_kicker">Product</div>
@@ -569,11 +631,16 @@
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_8_link_1">Repository</a>
                                     </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_8_tech">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-9" class="project-detail-card reveal-on-scroll delay-100"
+                        <article id="project-9" class="project-detail-card"
                             data-project="project-9">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_9_kicker">System</div>
@@ -598,11 +665,16 @@
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_9_link_1">Repository</a>
                                     </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_9_tech">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </article>
 
-                        <article id="project-10" class="project-detail-card reveal-on-scroll delay-200"
+                        <article id="project-10" class="project-detail-card"
                             data-project="project-10">
                             <div class="project-detail-header">
                                 <div class="project-summary-kicker" data-i18n="work_project_10_kicker">Embedded</div>
@@ -628,6 +700,11 @@
                                             target="_blank"
                                             class="text-uppercase text-white-50 hover-white magnetic-btn project-link"
                                             data-i18n="work_project_10_link_1">Repository</a>
+                                    </div>
+                                    <div class="project-tech-stack">
+                                        <div class="text-uppercase small text-white-50 mb-3" data-i18n="work_tech_stack_label">Tech Stack</div>
+                                        <div class="d-flex flex-wrap gap-y-4 gap-x-3" data-i18n="work_project_10_tech">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

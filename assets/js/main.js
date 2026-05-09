@@ -124,23 +124,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 4.1 Project Menu Selection ---
     const projectMenu = document.querySelector('[data-project-menu]');
     const projectPanels = document.querySelector('[data-project-panels]');
+    const mobileNav = document.getElementById('mobileProjectNav');
 
-    if (projectMenu && projectPanels) {
-        const menuItems = Array.from(projectMenu.querySelectorAll('.project-menu-item'));
+    if (projectPanels) {
+        const menuItems = projectMenu ? Array.from(projectMenu.querySelectorAll('.project-menu-item')) : [];
+        const mobilePills = mobileNav ? Array.from(mobileNav.querySelectorAll('.mobile-project-pill')) : [];
         const panels = Array.from(projectPanels.querySelectorAll('.project-detail-card'));
 
         const setActiveProject = (projectId, updateHash = true) => {
-            const nextMenuItem = menuItems.find(item => item.dataset.project === projectId);
             const nextPanel = panels.find(panel => panel.dataset.project === projectId);
+            if (!nextPanel) return;
 
-            if (!nextMenuItem || !nextPanel) {
-                return;
+            // Update Desktop Menu
+            if (menuItems.length > 0) {
+                menuItems.forEach(item => item.classList.remove('is-active'));
+                const nextMenuItem = menuItems.find(item => item.dataset.project === projectId);
+                if (nextMenuItem) nextMenuItem.classList.add('is-active');
             }
 
-            menuItems.forEach(item => item.classList.remove('is-active'));
-            panels.forEach(panel => panel.classList.remove('is-active'));
+            // Update Mobile Pills (Grid)
+            if (mobilePills.length > 0) {
+                mobilePills.forEach(pill => pill.classList.remove('is-active'));
+                const nextPill = mobilePills.find(pill => pill.dataset.project === projectId);
+                if (nextPill) nextPill.classList.add('is-active');
+            }
 
-            nextMenuItem.classList.add('is-active');
+            // Update Panels
+            panels.forEach(panel => panel.classList.remove('is-active'));
             nextPanel.classList.add('is-active', 'is-visible');
 
             if (updateHash) {
@@ -149,30 +159,49 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const initialHash = window.location.hash.replace('#', '');
-        const initialProject = menuItems.some(item => item.dataset.project === initialHash)
-            ? initialHash
-            : (menuItems[0] ? menuItems[0].dataset.project : null);
+        const hasProject = (id) => panels.some(p => p.dataset.project === id);
+        const initialProject = hasProject(initialHash) ? initialHash : (panels[0]?.dataset.project);
 
         if (initialProject) {
             setActiveProject(initialProject, false);
         }
 
-        projectMenu.addEventListener('click', (event) => {
-            const targetItem = event.target.closest('.project-menu-item');
-            if (!targetItem) {
-                return;
-            }
+        // Desktop Menu Click
+        if (projectMenu) {
+            projectMenu.addEventListener('click', (event) => {
+                const targetItem = event.target.closest('.project-menu-item');
+                if (!targetItem) return;
+                event.preventDefault();
+                const projectId = targetItem.dataset.project;
+                if (projectId) setActiveProject(projectId, true);
+            });
+        }
 
-            event.preventDefault();
-            const projectId = targetItem.dataset.project;
-            if (projectId) {
+        // Mobile Pills Click
+        if (mobileNav) {
+            mobileNav.addEventListener('click', (e) => {
+                const pill = e.target.closest('.mobile-project-pill');
+                if (!pill) return;
+                
+                const projectId = pill.dataset.project;
                 setActiveProject(projectId, true);
-            }
-        });
+
+                // Scroll to the top of the project-menu-card (where headers are)
+                const menuCard = mobileNav.closest('.project-menu-card');
+                if (menuCard) {
+                    const rect = menuCard.getBoundingClientRect();
+                    const absoluteTop = window.pageYOffset + rect.top;
+                    window.scrollTo({
+                        top: absoluteTop - 100, // Offset for sticky navbar
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
 
         window.addEventListener('hashchange', () => {
             const nextHash = window.location.hash.replace('#', '');
-            if (nextHash) {
+            if (nextHash && hasProject(nextHash)) {
                 setActiveProject(nextHash, false);
             }
         });
