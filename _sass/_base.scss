@@ -109,19 +109,20 @@ a {
     overflow: hidden;
 
     h1 {
-        font-size: clamp(2rem, 10vw, 10rem);
+        font-size: clamp(4rem, 12vw, 10rem);
         line-height: 0.9;
         text-align: center;
         z-index: 2;
         margin: 0;
 
         @media (max-width: 768px) {
-            font-size: clamp(2rem, 7.5vw, 8rem);
+            font-size: 13vw; // Target ~75% width for the longest word
         }
 
         .text-mask {
             display: block;
             overflow: hidden;
+            white-space: nowrap; // Ensure words never wrap
 
             &>span {
                 display: block;

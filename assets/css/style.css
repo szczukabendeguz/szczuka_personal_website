@@ -190,7 +190,7 @@ a:hover {
   overflow: hidden;
 }
 .hero-section h1 {
-  font-size: clamp(2rem, 10vw, 10rem);
+  font-size: clamp(4rem, 12vw, 10rem);
   line-height: 0.9;
   text-align: center;
   z-index: 2;
@@ -198,12 +198,13 @@ a:hover {
 }
 @media (max-width: 768px) {
   .hero-section h1 {
-    font-size: clamp(2rem, 7.5vw, 8rem);
+    font-size: 13vw;
   }
 }
 .hero-section h1 .text-mask {
   display: block;
   overflow: hidden;
+  white-space: nowrap;
 }
 .hero-section h1 .text-mask > span {
   display: block;

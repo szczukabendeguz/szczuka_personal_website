@@ -1,10 +1,11 @@
+const currentYear = new Date().getFullYear();
 const translations = {
     en: {
         nav_about: "About",
         nav_work: "Work",
         nav_contact: "Contact",
 
-        hero_pill: "Portfolio 2026",
+        hero_pill: `Portfolio ${currentYear}`,
         hero_desc: "Dedicated and communicative developer with a passion for continuous learning.",
 
         about_title: "About Me",
@@ -231,14 +232,14 @@ const translations = {
         contact_linkedin: "LinkedIn",
         contact_github: "GitHub",
         contact_team: "Team Jerry",
-        footer_rights: "&copy; 2026 Bendegúz Szczuka. All rights reserved."
+        footer_rights: `&copy; ${currentYear} Bendegúz Szczuka. All rights reserved.`
     },
     hu: {
         nav_about: "Rólam",
         nav_work: "Munkáim",
         nav_contact: "Kapcsolat",
 
-        hero_pill: "Portfólió 2026",
+        hero_pill: `Portfólió ${currentYear}`,
         hero_desc: "Elkötelezett és kommunikatív fejlesztő vagyok, aki törekszik a folyamatos tanulásra.",
 
         about_title: "Rólam",
@@ -465,6 +466,6 @@ const translations = {
         contact_linkedin: "LinkedIn",
         contact_github: "GitHub",
         contact_team: "Team Jerry",
-        footer_rights: "&copy; 2026 Szczuka Bendegúz. Minden jog fenntartva."
+        footer_rights: `&copy; ${currentYear} Szczuka Bendegúz. Minden jog fenntartva.`
     }
 };
