@@ -854,6 +854,7 @@ body.is-loaded {
 .project-summary-title {
     margin: 0.2rem 0 0.35rem;
     font-size: 1.4rem;
+    overflow-wrap: anywhere;
 }
 
 .project-summary-meta {
@@ -965,6 +966,7 @@ body.is-loaded {
     font-size: 1rem;
     font-weight: 600;
     color: $text-main;
+    overflow-wrap: anywhere;
 }
 
 .project-menu-meta {
