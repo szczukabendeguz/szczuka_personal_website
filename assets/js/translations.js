@@ -9,8 +9,8 @@ const translations = {
         hero_desc: "Dedicated and communicative developer with a passion for continuous learning.",
 
         about_title: "About Me",
-        about_p1: "I am currently pursuing my <strong>Computer Science Engineering</strong> degree at <strong>Obuda University</strong> (2022 – Present). I’m enthusiastic about expanding my knowledge and expertise in the field.",
-        about_p2: "Beyond coding, I'm a communicative team player who values continuous learning. I strengthen my skills daily alongside my university studies.",
+        about_p1: "I have graduated with a <strong>Computer Science Engineering</strong> degree from <strong>Obuda University</strong> (2022 – 2026). I’m enthusiastic about expanding my knowledge and expertise in the field.",
+        about_p2: "Beyond coding, I'm a communicative team player who values continuous learning. I continuously strengthen my skills through real-world projects and professional development.",
         about_lang_title: "Languages",
         about_lang_hu: "<i class=\"bi bi-translate me-1\"></i> Hungarian (Native)",
         about_lang_en: "<i class=\"bi bi-globe me-1\"></i> English (C1)",
@@ -244,8 +244,8 @@ const translations = {
         hero_desc: "Elkötelezett és kommunikatív fejlesztő vagyok, aki törekszik a folyamatos tanulásra.",
 
         about_title: "Rólam",
-        about_p1: "Jelenleg <strong>Mérnökinformatikus</strong> tanulmányaimat folytatom az <strong>Óbudai Egyetemen</strong> (2022 – Jelenleg). Lelkesen bővítem tudásomat és szakértelmemet a területen.",
-        about_p2: "A kódoláson túl kommunikatív csapatjátékos vagyok, aki értékeli a folyamatos fejlődést. Egyetemi tanulmányaim mellett naponta fejlesztem készségeimet.",
+        about_p1: "Diplomát szereztem <strong>Mérnökinformatikus</strong> szakon az <strong>Óbudai Egyetemen</strong> (2022 – 2026). Lelkesen bővítem tudásomat és szakértelmemet a területen.",
+        about_p2: "A kódoláson túl kommunikatív csapatjátékos vagyok, aki értékeli a folyamatos fejlődést. Készségeimet folyamatosan valós projekteken és szakmai fejlődéssel erősítem.",
         about_lang_title: "Nyelvek",
         about_lang_hu: "<i class=\"bi bi-translate me-1\"></i> Magyar (Anyanyelv)",
         about_lang_en: "<i class=\"bi bi-globe me-1\"></i> Angol (C1)",
